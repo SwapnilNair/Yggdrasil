@@ -1,0 +1,1 @@
+ERROR_ODIN_UNAVAILABLE = "ERROR[HEIMDALL]: Odin Unavailable"

@@ -1,0 +1,1 @@
+MSG_SENDING_HEARTBEAT = "MESSAGE[HEIMDALL] : Sending Heartbeat"

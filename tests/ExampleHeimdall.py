@@ -1,5 +1,8 @@
-import heimdall
 import sys
+import os
+sys.path.append(os.getcwd()+"/src/heimdall")
+
+import heimdall
 
 port = sys.argv[1]
 
