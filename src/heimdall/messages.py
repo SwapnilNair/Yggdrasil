@@ -1,1 +1,1 @@
-MSG_SENDING_HEARTBEAT = "MESSAGE[HEIMDALL] : Sending Heartbeat"
+MSG_SENDING_HEARTBEAT = "MESSAGE[HEIMDALL] : Sending Heartbeat to Odin @ {}:{}"

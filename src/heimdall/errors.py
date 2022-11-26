@@ -1,1 +1,2 @@
 ERROR_ODIN_UNAVAILABLE = "ERROR[HEIMDALL]: Odin Unavailable"
+ERROR_ODIN_HEARTBEAT_REQUEST_RETRY = "ERROR[HEIMDALL]: Heartbeat request failed; Retrying..."
