@@ -22,9 +22,9 @@ class Heimdall():
         self._consumers = []
 
         self._heartbeatMessage = dumps({
-            "brokerId": str(self._id),
-            "brokerIp": self._ip,
-            "brokerPort": self._port,
+            "heimdallId": str(self._id),
+            "heimdallIp": self._ip,
+            "heimdallPort": self._port,
         })
 
         # replication
