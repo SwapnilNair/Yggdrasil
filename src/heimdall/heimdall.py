@@ -1,5 +1,5 @@
 import threading
-from json import dumps
+from json import dumps, loads
 from socketserver import BaseRequestHandler, ThreadingTCPServer
 from time import sleep
 from uuid import uuid4
@@ -88,9 +88,10 @@ class Heimdall():
 
     class socketRequestHandler(BaseRequestHandler):
         def handle(self):
-            data = str(self.request.recv(1024), 'ascii')
+            data = loads(str(self.request.recv(4096), 'utf-8'))
+            print(data)
             cur_thread = threading.current_thread()
-            response = bytes("{}: {}".format(cur_thread.name, data), 'ascii')
+            response = bytes("{}: {}".format(cur_thread.name, data), 'utf-8')
             self.request.sendall(response)
 
     def createProducerSocketServer(self):
@@ -113,5 +114,5 @@ class Heimdall():
         )
         self._threadedSocketServerThread.start()
 
-        timer = threading.Timer(interval=10.0, function=self.destroyServer, args=())
+        timer = threading.Timer(interval=30.0, function=self.destroyServer, args=())
         timer.start()

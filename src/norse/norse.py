@@ -1,5 +1,6 @@
 from uuid import uuid4
 import threading
+import socket, json
 
 class Norse():
 
@@ -14,9 +15,15 @@ class Norse():
         
     
     def sendMessage(self, msgSetToSend):
-        print(len(msgSetToSend))
-
-        pass
+        #print(len(msgSetToSend))
+        HOST = 'localhost'
+        PORT = 3500
+        s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        s.connect((HOST, PORT))
+        dataString = json.dumps(msgSetToSend)
+        s.send(dataString.encode('utf-8'))
+        print("data sent to Heimdall")
+        s.close()
     
 
     def produceMessage(self, topic, message):
