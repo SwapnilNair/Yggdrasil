@@ -1,10 +1,13 @@
-from uuid import uuid4
-import _thread
-from time import sleep
-import requests
+import threading
 from json import dumps
+from socketserver import BaseRequestHandler, ThreadingTCPServer
+from time import sleep
+from uuid import uuid4
+
 import errors
 import messages
+import requests
+
 
 class Heimdall():
     """
@@ -13,7 +16,7 @@ class Heimdall():
         # initialize stuff
         self._id = uuid4()
         self._ip = ip
-        self._port = port
+        self._port = int(port)
         self._zookeeperIp = "localhost"
         self._zookeeperPort = 5000
         self._healthEndPoint = "health"
@@ -25,8 +28,8 @@ class Heimdall():
 
         self._heartbeatMessage = {
             "heimdallId": str(self._id),
-            "heimdallIp": self._ip,
-            "heimdallPort": self._port,
+            "heimdallIp": str(self._ip),
+            "heimdallPort": str(self._port),
         }
 
         # replication
@@ -35,20 +38,28 @@ class Heimdall():
         self._healthThread = None
         self.initHealthProc()
 
+        # socket server 
+        self._threadedSocketServer = None
+        self._threadedSocketServerThread = None
         # listen to producer
         # listen to consumer
-    
+
     def initHealthProc(self):
         """
         Initialize the thread to serve the health client
         """
-        self._healthThread = _thread.start_new_thread(self.serveHealthClient, ())
+        self._healthThread = threading.Thread(
+            target=self.serveHealthClient,
+            args=(),
+            name="healthThread"
+        )
+        self._healthThread.start()
 
     def serveHealthClient(self):
         """
         Serves client to send heartbeats to Zookeeper
         """
-        k = 10
+        k = 5
         for i in range(k):
             self.sendHeartBeat()
             sleep(2)
@@ -70,13 +81,37 @@ class Heimdall():
             # if 3 heartbeat requests failed, throw error
             if self._heartBeatRequestRetryFailCount == 3:
                 print(errors.ERROR_ODIN_UNAVAILABLE)
-                _thread.exit()
             # increment the fail count
             else:
                 print(errors.ERROR_ODIN_HEARTBEAT_REQUEST_RETRY)
                 self._heartBeatRequestRetryFailCount += 1
 
-    def serve(self):
-        while True:
-            pass
+    class socketRequestHandler(BaseRequestHandler):
+        def handle(self):
+            data = str(self.request.recv(1024), 'ascii')
+            cur_thread = threading.current_thread()
+            response = bytes("{}: {}".format(cur_thread.name, data), 'ascii')
+            self.request.sendall(response)
 
+    def createProducerSocketServer(self):
+        self._threadedSocketServer = ThreadingTCPServer((self._ip, self._port), self.socketRequestHandler)
+
+    def destroyServer(self):
+        print(messages.MSG_STOPPING_SERVER_GRACEFULLY)
+        self._threadedSocketServer.shutdown()
+
+    def startServer(self):
+        print(messages.MSG_STARTING_SERVER.format(self._threadedSocketServerThread.name))
+        self._threadedSocketServer.serve_forever()
+
+
+    def serve(self):
+        self.createProducerSocketServer()
+        self._threadedSocketServerThread = threading.Thread(
+            target=self.startServer,
+            daemon=True
+        )
+        self._threadedSocketServerThread.start()
+
+        timer = threading.Timer(interval=10.0, function=self.destroyServer, args=())
+        timer.start()
