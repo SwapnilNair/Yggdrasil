@@ -6,27 +6,26 @@ from uuid import uuid4
 
 class Norse():
 
-    def __init__(self, ip, port, bufferSize):
+    def __init__(self, port, bufferSize = 100, ip = 'localhost'):
         self._producerID = uuid4()
         self._ip = ip
         self._port = port
         self._bufferSize = bufferSize
         self._incomingMessages = {}
         self._bufferForceFlushTimer = None
+        self._brokerHost = 'localhost'
+        self._brokerPort = 3500
+        self._socketStorage = None
         
-    
-    def sendMessage(self, msgSetToSend):
-        #print(len(msgSetToSend))
-        HOST = 'localhost'
-        PORT = 3500
-        s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        s.connect((HOST, PORT))
-        dataString = json.dumps(msgSetToSend)
-        s.send(dataString.encode('utf-8'))
+    def sendMessage(self, topic):
+        #print({'topic': topic, 'messages': self._incomingMessages[topic]})
+        self._socketStorage = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        self._socketStorage.connect((self._brokerHost, self._brokerPort))
+        dataString = json.dumps(self.wrapMessage({'topic': topic, 'messages': self._incomingMessages[topic]}))
+        self._socketStorage.send(dataString.encode('utf-8'))
         print("data sent to Heimdall")
-        s.close()
-    
-
+        self._socketStorage.close()
+        
     def produceMessage(self, topic, message):
         if self._bufferForceFlushTimer != None:
             self._bufferForceFlushTimer.cancel()
@@ -34,13 +33,15 @@ class Norse():
             self._incomingMessages[topic] = []
         self._incomingMessages[topic].append(message)
         if(len(self._incomingMessages[topic]) == self._bufferSize):
-            self.sendMessage(self._incomingMessages[topic])
+            self.sendMessage(topic)
             #clear incomingMessages[topic]
             self._incomingMessages[topic].clear()
         else:
-            self._bufferForceFlushTimer = threading.Timer(5.0, lambda : self.sendMessage(self._incomingMessages[topic]))
+            self._bufferForceFlushTimer = threading.Timer(5.0, lambda : self.sendMessage(topic))
             self._bufferForceFlushTimer.start()
-            
+    
+    def wrapMessage(self, message):
+        return {"nodeType" : "norse", 'ip': self._ip, "port" : self._port, "nodeID": str(self._producerID), 'message':message}
 
 
     def checkHeimdall():
