@@ -87,6 +87,9 @@ class Heimdall():
                 self._heartBeatRequestRetryFailCount += 1
 
     class socketRequestHandler(BaseRequestHandler):
+        """
+        Handler for the socket server
+        """
         def handle(self):
             data = loads(str(self.request.recv(4096), 'utf-8'))
             print(messages.MSG_DATA_RECEIVED.format(len(data),self.client_address))
@@ -95,18 +98,29 @@ class Heimdall():
             self.request.sendall(response)
 
     def createProducerSocketServer(self):
+        """
+        Sets up the socket server
+        """
         self._threadedSocketServer = ThreadingTCPServer((self._ip, self._port), self.socketRequestHandler)
 
     def destroyServer(self):
+        """
+        Destroys the socket server
+        """
         print(messages.MSG_STOPPING_SERVER_GRACEFULLY)
         self._threadedSocketServer.shutdown()
 
     def startServer(self):
+        """
+        Starts the socket server
+        """
         print(messages.MSG_STARTING_SERVER.format(self._threadedSocketServerThread.name))
         self._threadedSocketServer.serve_forever()
 
-
     def serve(self):
+        """
+        Runs Heimdall, sets up the socket server and sets a timer to destroy server [WIP]
+        """
         self.createProducerSocketServer()
         self._threadedSocketServerThread = threading.Thread(
             target=self.startServer,
