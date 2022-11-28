@@ -1,6 +1,8 @@
-from uuid import uuid4
+import json
+import socket
 import threading
-import socket, json
+from uuid import uuid4
+
 
 class Norse():
 
@@ -11,7 +13,6 @@ class Norse():
         self._bufferSize = bufferSize
         self._incomingMessages = {}
         self._bufferForceFlushTimer = None
-        
         
     
     def sendMessage(self, msgSetToSend):

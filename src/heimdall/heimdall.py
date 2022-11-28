@@ -89,7 +89,7 @@ class Heimdall():
     class socketRequestHandler(BaseRequestHandler):
         def handle(self):
             data = loads(str(self.request.recv(4096), 'utf-8'))
-            print(data)
+            print(messages.MSG_DATA_RECEIVED.format(len(data),self.client_address))
             cur_thread = threading.current_thread()
             response = bytes("{}: {}".format(cur_thread.name, data), 'utf-8')
             self.request.sendall(response)
@@ -114,5 +114,5 @@ class Heimdall():
         )
         self._threadedSocketServerThread.start()
 
-        timer = threading.Timer(interval=30.0, function=self.destroyServer, args=())
+        timer = threading.Timer(interval=60.0, function=self.destroyServer, args=())
         timer.start()

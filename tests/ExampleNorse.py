@@ -1,6 +1,9 @@
 import json
-import sys
 import os
+import random
+import sys
+import time
+
 sys.path.append(os.getcwd()+"/src/norse")
 
 import norse
@@ -12,7 +15,10 @@ bufferSize = int(sys.argv[3])
 
 producer = norse.Norse(port=port, ip = ip, bufferSize = bufferSize)
 
-with open('C:/Users/kavin/OneDrive/Desktop/sem 5/bd/YAK/BD1_368_409_413_452/data/dataset.json', "r") as jsonfile:
+print(os.getcwd())
+
+with open('./data/dataset.json', "r") as jsonfile:
+    time.sleep(random.uniform(3, 6))
     data = json.loads(jsonfile.read())
     #print(len(data))
     for message in data:
