@@ -8,6 +8,8 @@ import errors
 import messages
 import requests
 
+from . import topic
+
 
 class Heimdall():
     """
@@ -20,7 +22,7 @@ class Heimdall():
         self._zookeeperIp = "localhost"
         self._zookeeperPort = 5000
         self._healthEndPoint = "health"
-        self._topics = []
+        self._topics = {}
         self._producers = []
         self._consumers = []
 
@@ -33,7 +35,9 @@ class Heimdall():
         }
 
         # replication
-
+        self._nBrokers = 3
+        self._nPartitions = 3
+        self._nReplication = 3
         # create odin heartbeat process
         self._healthThread = None
         self.initHealthProc()
@@ -43,6 +47,7 @@ class Heimdall():
         self._threadedSocketServerThread = None
         # listen to producer
         # listen to consumer
+
 
     def initHealthProc(self):
         """
@@ -86,6 +91,42 @@ class Heimdall():
                 print(errors.ERROR_ODIN_HEARTBEAT_REQUEST_RETRY)
                 self._heartBeatRequestRetryFailCount += 1
 
+    def partitionFunction(self, message):
+        if not message.get("key"):
+            return -1
+        if type(message["key"]) is str:
+            return ord(message["key"][-1]) % self._nBrokers
+        elif type(message["key"]) is int:
+            return message["key"] % self._nBrokers
+        else:
+            return -1
+
+    def yeetToHeimdall(self, messages):
+        # create a socket to send data to other brokers
+        pass
+
+    def partitionIncomingMessages(self, messages):
+        partitions_buffer = {}
+        for m in messages:
+            # get partition number for each message
+            p = self.partitionFunction(message=m)
+
+            # handle partition error
+            if p == -1:
+                p = 0
+            
+            if not partitions_buffer.get(p):
+                partitions_buffer[p] = []
+            
+            # add to partition buffer
+            partitions_buffer[p].append(m)
+
+        # push partitions to respective heimdall
+        for k in partitions_buffer.keys():
+            # find which heimdall the kth partition must go to
+            t = threading.Thread(self.yeetToHeimdall, (partitions_buffer[k],))
+            t.start()
+    
     class socketRequestHandler(BaseRequestHandler):
         """
         Handler for the socket server
@@ -93,6 +134,23 @@ class Heimdall():
         def handle(self):
             data = loads(str(self.request.recv(4096), 'utf-8'))
             print(messages.MSG_DATA_RECEIVED.format(len(data),self.client_address))
+
+            nodeType = data["nodeType"]
+
+            if nodeType == "norse":
+                # If norse sends messages here => THIS HEIMDALL IS THE LEADER
+                # new messages coming in
+                # partition and yeet to respective heimdall
+                pass
+            elif nodeType == "heimdall":
+                # sync partitions
+                pass
+            elif nodeType == "asgardian":
+                # requests messages
+                pass
+            else:
+                pass
+
             cur_thread = threading.current_thread()
             response = bytes("{}: {}".format(cur_thread.name, data), 'utf-8')
             self.request.sendall(response)

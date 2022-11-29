@@ -1,0 +1,32 @@
+{
+    "odinPort": "",
+    "odinIp": "",
+    "heimdalls": {
+        "0": {
+            "ip": "",
+            "port": ""
+        }, 
+        "1": {
+            "ip": "",
+            "port": ""
+        }, 
+        "2": {
+            "ip": "",
+            "port": ""
+        }
+    },
+    "leader": "",
+    "topics": {
+        "topic1": {
+            "name": "topic1",
+            "partitions": {
+                "brokerId": "",
+                "isReplica": "",
+                "logPath": "",
+                "offset": 0
+            },
+            "logPath": "",
+            "createdAt": ""
+        }
+    }
+}
