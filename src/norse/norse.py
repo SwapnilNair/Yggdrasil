@@ -2,6 +2,9 @@ import json
 import socket
 import threading
 from uuid import uuid4
+from datetime import datetime
+import zlib
+import base64
 
 
 class Norse():
@@ -40,8 +43,18 @@ class Norse():
             self._bufferForceFlushTimer = threading.Timer(5.0, lambda : self.sendMessage(topic))
             self._bufferForceFlushTimer.start()
     
+    def compressMessage(self, message):
+        ZIPJSON_KEY = 'base64(zip(o))'
+        message['messages'] = base64.b64encode(zlib.compress(json.dumps(message['messages']).encode('utf-8'))).decode('ascii')
+        #print(message)
+        #print(self.decompressMessage(message, insist = True))
+        return message
+    
+    
+
+    
     def wrapMessage(self, message):
-        return {"nodeType" : "norse", 'ip': self._ip, "port" : self._port, "nodeID": str(self._producerID), 'message':message}
+        return {"nodeType" : "norse", "nodeID": str(self._producerID), 'message':self.compressMessage(message), "timestamp": str(datetime.now())}
 
 
     def checkHeimdall():
