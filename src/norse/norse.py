@@ -5,6 +5,7 @@ from uuid import uuid4
 from datetime import datetime
 import zlib
 import base64
+import requests
 
 
 class Norse():
@@ -22,6 +23,8 @@ class Norse():
         
     def sendMessage(self, topic):
         #print({'topic': topic, 'messages': self._incomingMessages[topic]})
+        currentHeimdallMetadata = self.checkForLeaderHeimdall()
+        
         self._socketStorage = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         self._socketStorage.connect((self._brokerHost, self._brokerPort))
         dataString = json.dumps(self.wrapMessage({'topic': topic, 'messages': self._incomingMessages[topic]}))
@@ -44,21 +47,24 @@ class Norse():
             self._bufferForceFlushTimer.start()
     
     def compressMessage(self, message):
-        ZIPJSON_KEY = 'base64(zip(o))'
+        #ZIPJSON_KEY = 'base64(zip(o))'
         message['messages'] = base64.b64encode(zlib.compress(json.dumps(message['messages']).encode('utf-8'))).decode('ascii')
         #print(message)
         #print(self.decompressMessage(message, insist = True))
         return message
     
     
-
-    
     def wrapMessage(self, message):
         return {"nodeType" : "norse", "nodeID": str(self._producerID), 'message':self.compressMessage(message), "timestamp": str(datetime.now())}
 
 
-    def checkHeimdall():
-        pass
+    def checkForLeaderHeimdall(self):
+        #get request to zookeeper
+        URL = "https://localhost:5000/leader"
+        r = requests.get(url = URL)
+        dataReceived = r.json()
+        print(dataReceived) #just to check
+        return dataReceived
 
 
  
