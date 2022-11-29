@@ -1,6 +1,6 @@
 from flask import Flask ,request  
 import _thread,logging
-
+import json
 #logging.basicConfig(filename='eventlog.log', level=logging.INFO)
 
 #data = 'Hello from the other side...'
@@ -18,6 +18,7 @@ import _thread,logging
 
 class Odin():
     healthapi = None
+    metadata = ""
     def __init__(self,name):
         self.healthThreadNo = None
         self.healthapi = Flask(name)
@@ -43,6 +44,8 @@ class Odin():
         return '1'
 
     def metadataEndpoint(self):
-        print("Okay, this get request works")
-        return ' get request works'
+        metafile = open('/home/pes1ug20cs452/Documents/YAK/data/odinMetadata.json','r')
+        metadata = json.load(metafile)
+        print("Okay,this get request works")
+        return metadata #Returned string initially, but I think this is way more convenient for comms
 
