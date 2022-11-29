@@ -1,6 +1,7 @@
 import sys
 import os
-sys.path.append(os.getcwd()+"/src/odin")
+sys.path.append("/home/pes1ug20cs452/Documents/YAK/src/odin")
+print(sys.path)
 import odin
 port = sys.argv[1]
 

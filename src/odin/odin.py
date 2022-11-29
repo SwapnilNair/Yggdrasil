@@ -22,12 +22,16 @@ class Odin():
         self.healthThreadNo = None
         self.healthapi = Flask(name)
         self.addEndpoint(endpoint='/health',endpoint_name='health',handler=self.handleHealthEndpoint)
+        self.addEndpointget(endpoint='/metadata',endpoint_name='metadata',handler=self.metadataEndpoint)
 
     def run(self):
         self.healthapi.run()
 
     def addEndpoint(self,endpoint=None,endpoint_name = None,handler=None):
         self.healthapi.add_url_rule(endpoint, endpoint_name,handler,methods=['POST'])
+
+    def addEndpointget(self,endpoint=None,endpoint_name = None,handler=None):
+        self.healthapi.add_url_rule(endpoint, endpoint_name,handler,methods=['GET'])
 
     def serve(self):
         self.healthThreadNo = _thread.start_new_thread(self.run, ())
@@ -37,4 +41,8 @@ class Odin():
     def handleHealthEndpoint(self):
         print("MESSAGE[ODIN] : Received Heartbeat from " + request.json['heimdallIp'] + " at port " + request.json['heimdallPort'])
         return '1'
-  
+
+    def metadataEndpoint(self):
+        print("Okay, this get request works")
+        return ' get request works'
+
