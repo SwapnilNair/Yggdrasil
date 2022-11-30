@@ -14,7 +14,9 @@ try:
     flag = sys.argv[4]
 except:
     print("Flag not mentioned")
-    
+
+if flag == '--from-beginning':
+    flag = True
 
 consumer = asgardian.Asgardian(
     ip = ip,
@@ -27,6 +29,9 @@ consumer = asgardian.Asgardian(
 topics = ["Orders", "SomethingElse"]
 consumer.subscribe(topics)
 
+consumer.request()
+'''
+
 while True:
     try:
         for i in consumer.messageQueue:
@@ -34,3 +39,5 @@ while True:
     except:
         pass
         #consumer.close()
+
+'''
