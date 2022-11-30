@@ -6,6 +6,7 @@ from datetime import datetime
 import zlib
 import base64
 import requests
+import time
 
 
 class Norse():
@@ -17,20 +18,24 @@ class Norse():
         self._bufferSize = bufferSize
         self._incomingMessages = {}
         self._bufferForceFlushTimer = None
-        self._brokerHost = 'localhost'
-        self._brokerPort = 3500
         self._socketStorage = None
+        self._leaderHeimdall = None
         
     def sendMessage(self, topic):
-        #print({'topic': topic, 'messages': self._incomingMessages[topic]})
-        currentHeimdallMetadata = self.checkForLeaderHeimdall()
         
         self._socketStorage = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        self._socketStorage.connect((self._brokerHost, self._brokerPort))
-        dataString = json.dumps(self.wrapMessage({'topic': topic, 'messages': self._incomingMessages[topic]}))
-        self._socketStorage.send(dataString.encode('utf-8'))
-        print("data sent to Heimdall")
-        self._socketStorage.close()
+        try:
+            self._socketStorage.connect((self._leaderHeimdall["heimdallIp"], self._leaderHeimdall["heimdallPort"]))
+            dataString = json.dumps(self.wrapMessage({'topic': topic, 'messages': self._incomingMessages[topic]}))
+            self._socketStorage.send(dataString.encode('utf-8'))
+            print("data sent to Heimdall")
+            self._socketStorage.close()
+        except Exception as e:
+            print('Connection refused' + '' + e)
+            self.checkForLeaderHeimdall()
+            self.sendMessage(topic)
+            
+        
         
     def produceMessage(self, topic, message):
         if self._bufferForceFlushTimer != None:
@@ -40,17 +45,13 @@ class Norse():
         self._incomingMessages[topic].append(message)
         if(len(self._incomingMessages[topic]) == self._bufferSize):
             self.sendMessage(topic)
-            #clear incomingMessages[topic]
             self._incomingMessages[topic].clear()
         else:
             self._bufferForceFlushTimer = threading.Timer(5.0, lambda : self.sendMessage(topic))
             self._bufferForceFlushTimer.start()
     
     def compressMessage(self, message):
-        #ZIPJSON_KEY = 'base64(zip(o))'
         message['messages'] = base64.b64encode(zlib.compress(json.dumps(message['messages']).encode('utf-8'))).decode('ascii')
-        #print(message)
-        #print(self.decompressMessage(message, insist = True))
         return message
     
     
@@ -59,12 +60,29 @@ class Norse():
 
 
     def checkForLeaderHeimdall(self):
-        #get request to zookeeper
         URL = "https://localhost:5000/leader"
-        r = requests.get(url = URL)
-        dataReceived = r.json()
-        print(dataReceived) #just to check
-        return dataReceived
+        """
+        {
+            "leader": -1
+        }
+        {
+            "leader": {
+                "heimdallId" : "",
+                "heimdallIp" : "",
+                "heimdallPort" : ""
+            }
+        }
+        """
+        r = -1
+        while (r == -1):
+            print("waiting for odin...")
+            r = requests.get(url = URL).json()['leader']
+            time.sleep(2)
+        self._leaderHeimdall = json.loads(r)
+
+        
+
+        
 
 
  
