@@ -1,11 +1,16 @@
-import sys
+import json
 import os
-sys.path.append("/home/pes1ug20cs452/Documents/YAK/src/odin")
-print(sys.path)
+import random
+import sys
+import time
+
+sys.path.append(os.getcwd()+"/src")
 import odin
+
 port = sys.argv[1]
 
-zookepa = odin.Odin(name= port
+zookepa = odin.Odin(
+    name= port
 )
 
 zookepa.serve()

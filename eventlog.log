@@ -1,0 +1,992 @@
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+ERROR:pink:Exception on /health [POST]
+Traceback (most recent call last):
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 1823, in full_dispatch_request
+    return self.finalize_request(rv)
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 1842, in finalize_request
+    response = self.make_response(rv)
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 2134, in make_response
+    raise TypeError(
+TypeError: The view function for 'health' did not return a valid response. The function either returned None or ended without a return statement.
+INFO:werkzeug:127.0.0.1 - - [30/Nov/2022 11:13:29] "[35m[1mPOST /health HTTP/1.1[0m" 500 -
+ERROR:pink:Exception on /health [POST]
+Traceback (most recent call last):
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 1823, in full_dispatch_request
+    return self.finalize_request(rv)
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 1842, in finalize_request
+    response = self.make_response(rv)
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 2134, in make_response
+    raise TypeError(
+TypeError: The view function for 'health' did not return a valid response. The function either returned None or ended without a return statement.
+INFO:werkzeug:127.0.0.1 - - [30/Nov/2022 11:13:31] "[35m[1mPOST /health HTTP/1.1[0m" 500 -
+ERROR:pink:Exception on /health [POST]
+Traceback (most recent call last):
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 1823, in full_dispatch_request
+    return self.finalize_request(rv)
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 1842, in finalize_request
+    response = self.make_response(rv)
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 2134, in make_response
+    raise TypeError(
+TypeError: The view function for 'health' did not return a valid response. The function either returned None or ended without a return statement.
+INFO:werkzeug:127.0.0.1 - - [30/Nov/2022 11:13:33] "[35m[1mPOST /health HTTP/1.1[0m" 500 -
+ERROR:pink:Exception on /health [POST]
+Traceback (most recent call last):
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 1823, in full_dispatch_request
+    return self.finalize_request(rv)
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 1842, in finalize_request
+    response = self.make_response(rv)
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 2134, in make_response
+    raise TypeError(
+TypeError: The view function for 'health' did not return a valid response. The function either returned None or ended without a return statement.
+INFO:werkzeug:127.0.0.1 - - [30/Nov/2022 11:13:35] "[35m[1mPOST /health HTTP/1.1[0m" 500 -
+ERROR:pink:Exception on /health [POST]
+Traceback (most recent call last):
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 1823, in full_dispatch_request
+    return self.finalize_request(rv)
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 1842, in finalize_request
+    response = self.make_response(rv)
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 2134, in make_response
+    raise TypeError(
+TypeError: The view function for 'health' did not return a valid response. The function either returned None or ended without a return statement.
+INFO:werkzeug:127.0.0.1 - - [30/Nov/2022 11:13:37] "[35m[1mPOST /health HTTP/1.1[0m" 500 -
+ERROR:pink:Exception on /health [POST]
+Traceback (most recent call last):
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 1823, in full_dispatch_request
+    return self.finalize_request(rv)
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 1842, in finalize_request
+    response = self.make_response(rv)
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 2134, in make_response
+    raise TypeError(
+TypeError: The view function for 'health' did not return a valid response. The function either returned None or ended without a return statement.
+INFO:werkzeug:127.0.0.1 - - [30/Nov/2022 11:14:03] "[35m[1mPOST /health HTTP/1.1[0m" 500 -
+ERROR:pink:Exception on /health [POST]
+Traceback (most recent call last):
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 1823, in full_dispatch_request
+    return self.finalize_request(rv)
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 1842, in finalize_request
+    response = self.make_response(rv)
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 2134, in make_response
+    raise TypeError(
+TypeError: The view function for 'health' did not return a valid response. The function either returned None or ended without a return statement.
+INFO:werkzeug:127.0.0.1 - - [30/Nov/2022 11:14:05] "[35m[1mPOST /health HTTP/1.1[0m" 500 -
+ERROR:pink:Exception on /health [POST]
+Traceback (most recent call last):
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 1823, in full_dispatch_request
+    return self.finalize_request(rv)
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 1842, in finalize_request
+    response = self.make_response(rv)
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 2134, in make_response
+    raise TypeError(
+TypeError: The view function for 'health' did not return a valid response. The function either returned None or ended without a return statement.
+INFO:werkzeug:127.0.0.1 - - [30/Nov/2022 11:14:07] "[35m[1mPOST /health HTTP/1.1[0m" 500 -
+ERROR:pink:Exception on /health [POST]
+Traceback (most recent call last):
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 1823, in full_dispatch_request
+    return self.finalize_request(rv)
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 1842, in finalize_request
+    response = self.make_response(rv)
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 2134, in make_response
+    raise TypeError(
+TypeError: The view function for 'health' did not return a valid response. The function either returned None or ended without a return statement.
+INFO:werkzeug:127.0.0.1 - - [30/Nov/2022 11:14:09] "[35m[1mPOST /health HTTP/1.1[0m" 500 -
+ERROR:pink:Exception on /health [POST]
+Traceback (most recent call last):
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 1823, in full_dispatch_request
+    return self.finalize_request(rv)
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 1842, in finalize_request
+    response = self.make_response(rv)
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 2134, in make_response
+    raise TypeError(
+TypeError: The view function for 'health' did not return a valid response. The function either returned None or ended without a return statement.
+INFO:werkzeug:127.0.0.1 - - [30/Nov/2022 11:14:11] "[35m[1mPOST /health HTTP/1.1[0m" 500 -
+ERROR:pink:Exception on /health [POST]
+Traceback (most recent call last):
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 1823, in full_dispatch_request
+    return self.finalize_request(rv)
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 1842, in finalize_request
+    response = self.make_response(rv)
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 2134, in make_response
+    raise TypeError(
+TypeError: The view function for 'health' did not return a valid response. The function either returned None or ended without a return statement.
+INFO:werkzeug:127.0.0.1 - - [30/Nov/2022 11:15:33] "[35m[1mPOST /health HTTP/1.1[0m" 500 -
+ERROR:pink:Exception on /health [POST]
+Traceback (most recent call last):
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 1823, in full_dispatch_request
+    return self.finalize_request(rv)
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 1842, in finalize_request
+    response = self.make_response(rv)
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 2134, in make_response
+    raise TypeError(
+TypeError: The view function for 'health' did not return a valid response. The function either returned None or ended without a return statement.
+INFO:werkzeug:127.0.0.1 - - [30/Nov/2022 11:15:35] "[35m[1mPOST /health HTTP/1.1[0m" 500 -
+ERROR:pink:Exception on /health [POST]
+Traceback (most recent call last):
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 1823, in full_dispatch_request
+    return self.finalize_request(rv)
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 1842, in finalize_request
+    response = self.make_response(rv)
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 2134, in make_response
+    raise TypeError(
+TypeError: The view function for 'health' did not return a valid response. The function either returned None or ended without a return statement.
+INFO:werkzeug:127.0.0.1 - - [30/Nov/2022 11:15:37] "[35m[1mPOST /health HTTP/1.1[0m" 500 -
+ERROR:pink:Exception on /health [POST]
+Traceback (most recent call last):
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 1823, in full_dispatch_request
+    return self.finalize_request(rv)
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 1842, in finalize_request
+    response = self.make_response(rv)
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 2134, in make_response
+    raise TypeError(
+TypeError: The view function for 'health' did not return a valid response. The function either returned None or ended without a return statement.
+INFO:werkzeug:127.0.0.1 - - [30/Nov/2022 11:15:39] "[35m[1mPOST /health HTTP/1.1[0m" 500 -
+ERROR:pink:Exception on /health [POST]
+Traceback (most recent call last):
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 1823, in full_dispatch_request
+    return self.finalize_request(rv)
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 1842, in finalize_request
+    response = self.make_response(rv)
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 2134, in make_response
+    raise TypeError(
+TypeError: The view function for 'health' did not return a valid response. The function either returned None or ended without a return statement.
+INFO:werkzeug:127.0.0.1 - - [30/Nov/2022 11:15:41] "[35m[1mPOST /health HTTP/1.1[0m" 500 -
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug:127.0.0.1 - - [30/Nov/2022 11:19:32] "GET /metadata HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [30/Nov/2022 11:19:59] "GET /metadata HTTP/1.1" 200 -
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug:127.0.0.1 - - [30/Nov/2022 11:20:04] "GET /metadata HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [30/Nov/2022 11:20:12] "GET /metadata HTTP/1.1" 200 -
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug:127.0.0.1 - - [30/Nov/2022 11:30:45] "GET /metadata HTTP/1.1" 200 -
+ERROR:pink:Exception on /health [POST]
+Traceback (most recent call last):
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 1823, in full_dispatch_request
+    return self.finalize_request(rv)
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 1842, in finalize_request
+    response = self.make_response(rv)
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 2134, in make_response
+    raise TypeError(
+TypeError: The view function for 'health' did not return a valid response. The function either returned None or ended without a return statement.
+INFO:werkzeug:127.0.0.1 - - [30/Nov/2022 11:30:49] "[35m[1mPOST /health HTTP/1.1[0m" 500 -
+ERROR:pink:Exception on /health [POST]
+Traceback (most recent call last):
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 1823, in full_dispatch_request
+    return self.finalize_request(rv)
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 1842, in finalize_request
+    response = self.make_response(rv)
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 2134, in make_response
+    raise TypeError(
+TypeError: The view function for 'health' did not return a valid response. The function either returned None or ended without a return statement.
+INFO:werkzeug:127.0.0.1 - - [30/Nov/2022 11:30:51] "[35m[1mPOST /health HTTP/1.1[0m" 500 -
+ERROR:pink:Exception on /health [POST]
+Traceback (most recent call last):
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 1823, in full_dispatch_request
+    return self.finalize_request(rv)
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 1842, in finalize_request
+    response = self.make_response(rv)
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 2134, in make_response
+    raise TypeError(
+TypeError: The view function for 'health' did not return a valid response. The function either returned None or ended without a return statement.
+INFO:werkzeug:127.0.0.1 - - [30/Nov/2022 11:30:53] "[35m[1mPOST /health HTTP/1.1[0m" 500 -
+ERROR:pink:Exception on /health [POST]
+Traceback (most recent call last):
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 1823, in full_dispatch_request
+    return self.finalize_request(rv)
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 1842, in finalize_request
+    response = self.make_response(rv)
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 2134, in make_response
+    raise TypeError(
+TypeError: The view function for 'health' did not return a valid response. The function either returned None or ended without a return statement.
+INFO:werkzeug:127.0.0.1 - - [30/Nov/2022 11:30:55] "[35m[1mPOST /health HTTP/1.1[0m" 500 -
+ERROR:pink:Exception on /health [POST]
+Traceback (most recent call last):
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 1823, in full_dispatch_request
+    return self.finalize_request(rv)
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 1842, in finalize_request
+    response = self.make_response(rv)
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 2134, in make_response
+    raise TypeError(
+TypeError: The view function for 'health' did not return a valid response. The function either returned None or ended without a return statement.
+INFO:werkzeug:127.0.0.1 - - [30/Nov/2022 11:30:57] "[35m[1mPOST /health HTTP/1.1[0m" 500 -
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+ERROR:pink:Exception on /health [POST]
+Traceback (most recent call last):
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 1823, in full_dispatch_request
+    return self.finalize_request(rv)
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 1842, in finalize_request
+    response = self.make_response(rv)
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 2134, in make_response
+    raise TypeError(
+TypeError: The view function for 'health' did not return a valid response. The function either returned None or ended without a return statement.
+INFO:werkzeug:127.0.0.1 - - [30/Nov/2022 11:31:53] "[35m[1mPOST /health HTTP/1.1[0m" 500 -
+ERROR:pink:Exception on /health [POST]
+Traceback (most recent call last):
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 1823, in full_dispatch_request
+    return self.finalize_request(rv)
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 1842, in finalize_request
+    response = self.make_response(rv)
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 2134, in make_response
+    raise TypeError(
+TypeError: The view function for 'health' did not return a valid response. The function either returned None or ended without a return statement.
+INFO:werkzeug:127.0.0.1 - - [30/Nov/2022 11:31:55] "[35m[1mPOST /health HTTP/1.1[0m" 500 -
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+ERROR:pink:Exception on /health [POST]
+Traceback (most recent call last):
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 1823, in full_dispatch_request
+    return self.finalize_request(rv)
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 1842, in finalize_request
+    response = self.make_response(rv)
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 2134, in make_response
+    raise TypeError(
+TypeError: The view function for 'health' did not return a valid response. The function either returned None or ended without a return statement.
+INFO:werkzeug:127.0.0.1 - - [30/Nov/2022 11:32:44] "[35m[1mPOST /health HTTP/1.1[0m" 500 -
+ERROR:pink:Exception on /health [POST]
+Traceback (most recent call last):
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 1823, in full_dispatch_request
+    return self.finalize_request(rv)
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 1842, in finalize_request
+    response = self.make_response(rv)
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 2134, in make_response
+    raise TypeError(
+TypeError: The view function for 'health' did not return a valid response. The function either returned None or ended without a return statement.
+INFO:werkzeug:127.0.0.1 - - [30/Nov/2022 11:32:46] "[35m[1mPOST /health HTTP/1.1[0m" 500 -
+ERROR:pink:Exception on /health [POST]
+Traceback (most recent call last):
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 1823, in full_dispatch_request
+    return self.finalize_request(rv)
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 1842, in finalize_request
+    response = self.make_response(rv)
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 2134, in make_response
+    raise TypeError(
+TypeError: The view function for 'health' did not return a valid response. The function either returned None or ended without a return statement.
+INFO:werkzeug:127.0.0.1 - - [30/Nov/2022 11:32:48] "[35m[1mPOST /health HTTP/1.1[0m" 500 -
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+ERROR:pink:Exception on /health [POST]
+Traceback (most recent call last):
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 1823, in full_dispatch_request
+    return self.finalize_request(rv)
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 1842, in finalize_request
+    response = self.make_response(rv)
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 2134, in make_response
+    raise TypeError(
+TypeError: The view function for 'health' did not return a valid response. The function either returned None or ended without a return statement.
+INFO:werkzeug:127.0.0.1 - - [30/Nov/2022 11:33:31] "[35m[1mPOST /health HTTP/1.1[0m" 500 -
+ERROR:pink:Exception on /health [POST]
+Traceback (most recent call last):
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 1823, in full_dispatch_request
+    return self.finalize_request(rv)
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 1842, in finalize_request
+    response = self.make_response(rv)
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 2134, in make_response
+    raise TypeError(
+TypeError: The view function for 'health' did not return a valid response. The function either returned None or ended without a return statement.
+INFO:werkzeug:127.0.0.1 - - [30/Nov/2022 11:33:33] "[35m[1mPOST /health HTTP/1.1[0m" 500 -
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+ERROR:pink:Exception on /health [POST]
+Traceback (most recent call last):
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 1823, in full_dispatch_request
+    return self.finalize_request(rv)
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 1842, in finalize_request
+    response = self.make_response(rv)
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 2134, in make_response
+    raise TypeError(
+TypeError: The view function for 'health' did not return a valid response. The function either returned None or ended without a return statement.
+INFO:werkzeug:127.0.0.1 - - [30/Nov/2022 11:34:10] "[35m[1mPOST /health HTTP/1.1[0m" 500 -
+ERROR:pink:Exception on /health [POST]
+Traceback (most recent call last):
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 1823, in full_dispatch_request
+    return self.finalize_request(rv)
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 1842, in finalize_request
+    response = self.make_response(rv)
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 2134, in make_response
+    raise TypeError(
+TypeError: The view function for 'health' did not return a valid response. The function either returned None or ended without a return statement.
+INFO:werkzeug:127.0.0.1 - - [30/Nov/2022 11:34:12] "[35m[1mPOST /health HTTP/1.1[0m" 500 -
+ERROR:pink:Exception on /health [POST]
+Traceback (most recent call last):
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 1823, in full_dispatch_request
+    return self.finalize_request(rv)
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 1842, in finalize_request
+    response = self.make_response(rv)
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 2134, in make_response
+    raise TypeError(
+TypeError: The view function for 'health' did not return a valid response. The function either returned None or ended without a return statement.
+INFO:werkzeug:127.0.0.1 - - [30/Nov/2022 11:34:14] "[35m[1mPOST /health HTTP/1.1[0m" 500 -
+ERROR:pink:Exception on /health [POST]
+Traceback (most recent call last):
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 1823, in full_dispatch_request
+    return self.finalize_request(rv)
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 1842, in finalize_request
+    response = self.make_response(rv)
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 2134, in make_response
+    raise TypeError(
+TypeError: The view function for 'health' did not return a valid response. The function either returned None or ended without a return statement.
+INFO:werkzeug:127.0.0.1 - - [30/Nov/2022 11:34:16] "[35m[1mPOST /health HTTP/1.1[0m" 500 -
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+ERROR:pink:Exception on /health [POST]
+Traceback (most recent call last):
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 1823, in full_dispatch_request
+    return self.finalize_request(rv)
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 1842, in finalize_request
+    response = self.make_response(rv)
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 2134, in make_response
+    raise TypeError(
+TypeError: The view function for 'health' did not return a valid response. The function either returned None or ended without a return statement.
+INFO:werkzeug:127.0.0.1 - - [30/Nov/2022 11:34:26] "[35m[1mPOST /health HTTP/1.1[0m" 500 -
+ERROR:pink:Exception on /health [POST]
+Traceback (most recent call last):
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 1823, in full_dispatch_request
+    return self.finalize_request(rv)
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 1842, in finalize_request
+    response = self.make_response(rv)
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 2134, in make_response
+    raise TypeError(
+TypeError: The view function for 'health' did not return a valid response. The function either returned None or ended without a return statement.
+INFO:werkzeug:127.0.0.1 - - [30/Nov/2022 11:34:28] "[35m[1mPOST /health HTTP/1.1[0m" 500 -
+ERROR:pink:Exception on /health [POST]
+Traceback (most recent call last):
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 1823, in full_dispatch_request
+    return self.finalize_request(rv)
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 1842, in finalize_request
+    response = self.make_response(rv)
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 2134, in make_response
+    raise TypeError(
+TypeError: The view function for 'health' did not return a valid response. The function either returned None or ended without a return statement.
+INFO:werkzeug:127.0.0.1 - - [30/Nov/2022 11:34:30] "[35m[1mPOST /health HTTP/1.1[0m" 500 -
+ERROR:pink:Exception on /health [POST]
+Traceback (most recent call last):
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 1823, in full_dispatch_request
+    return self.finalize_request(rv)
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 1842, in finalize_request
+    response = self.make_response(rv)
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 2134, in make_response
+    raise TypeError(
+TypeError: The view function for 'health' did not return a valid response. The function either returned None or ended without a return statement.
+INFO:werkzeug:127.0.0.1 - - [30/Nov/2022 11:34:32] "[35m[1mPOST /health HTTP/1.1[0m" 500 -
+ERROR:pink:Exception on /health [POST]
+Traceback (most recent call last):
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 1823, in full_dispatch_request
+    return self.finalize_request(rv)
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 1842, in finalize_request
+    response = self.make_response(rv)
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 2134, in make_response
+    raise TypeError(
+TypeError: The view function for 'health' did not return a valid response. The function either returned None or ended without a return statement.
+INFO:werkzeug:127.0.0.1 - - [30/Nov/2022 11:34:34] "[35m[1mPOST /health HTTP/1.1[0m" 500 -
+ERROR:pink:Exception on /health [POST]
+Traceback (most recent call last):
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 1823, in full_dispatch_request
+    return self.finalize_request(rv)
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 1842, in finalize_request
+    response = self.make_response(rv)
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 2134, in make_response
+    raise TypeError(
+TypeError: The view function for 'health' did not return a valid response. The function either returned None or ended without a return statement.
+INFO:werkzeug:127.0.0.1 - - [30/Nov/2022 11:34:36] "[35m[1mPOST /health HTTP/1.1[0m" 500 -
+ERROR:pink:Exception on /health [POST]
+Traceback (most recent call last):
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 1823, in full_dispatch_request
+    return self.finalize_request(rv)
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 1842, in finalize_request
+    response = self.make_response(rv)
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 2134, in make_response
+    raise TypeError(
+TypeError: The view function for 'health' did not return a valid response. The function either returned None or ended without a return statement.
+INFO:werkzeug:127.0.0.1 - - [30/Nov/2022 11:34:38] "[35m[1mPOST /health HTTP/1.1[0m" 500 -
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+ERROR:pink:Exception on /health [POST]
+Traceback (most recent call last):
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 1823, in full_dispatch_request
+    return self.finalize_request(rv)
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 1842, in finalize_request
+    response = self.make_response(rv)
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 2134, in make_response
+    raise TypeError(
+TypeError: The view function for 'health' did not return a valid response. The function either returned None or ended without a return statement.
+INFO:werkzeug:127.0.0.1 - - [30/Nov/2022 11:34:41] "[35m[1mPOST /health HTTP/1.1[0m" 500 -
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+ERROR:pink:Exception on /health [POST]
+Traceback (most recent call last):
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 1823, in full_dispatch_request
+    return self.finalize_request(rv)
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 1842, in finalize_request
+    response = self.make_response(rv)
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 2134, in make_response
+    raise TypeError(
+TypeError: The view function for 'health' did not return a valid response. The function either returned None or ended without a return statement.
+INFO:werkzeug:127.0.0.1 - - [30/Nov/2022 11:34:49] "[35m[1mPOST /health HTTP/1.1[0m" 500 -
+ERROR:pink:Exception on /health [POST]
+Traceback (most recent call last):
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 1823, in full_dispatch_request
+    return self.finalize_request(rv)
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 1842, in finalize_request
+    response = self.make_response(rv)
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 2134, in make_response
+    raise TypeError(
+TypeError: The view function for 'health' did not return a valid response. The function either returned None or ended without a return statement.
+INFO:werkzeug:127.0.0.1 - - [30/Nov/2022 11:34:51] "[35m[1mPOST /health HTTP/1.1[0m" 500 -
+ERROR:pink:Exception on /health [POST]
+Traceback (most recent call last):
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 1823, in full_dispatch_request
+    return self.finalize_request(rv)
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 1842, in finalize_request
+    response = self.make_response(rv)
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 2134, in make_response
+    raise TypeError(
+TypeError: The view function for 'health' did not return a valid response. The function either returned None or ended without a return statement.
+INFO:werkzeug:127.0.0.1 - - [30/Nov/2022 11:34:53] "[35m[1mPOST /health HTTP/1.1[0m" 500 -
+ERROR:pink:Exception on /health [POST]
+Traceback (most recent call last):
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 1823, in full_dispatch_request
+    return self.finalize_request(rv)
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 1842, in finalize_request
+    response = self.make_response(rv)
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 2134, in make_response
+    raise TypeError(
+TypeError: The view function for 'health' did not return a valid response. The function either returned None or ended without a return statement.
+INFO:werkzeug:127.0.0.1 - - [30/Nov/2022 11:34:55] "[35m[1mPOST /health HTTP/1.1[0m" 500 -
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+ERROR:pink:Exception on /health [POST]
+Traceback (most recent call last):
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 1823, in full_dispatch_request
+    return self.finalize_request(rv)
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 1842, in finalize_request
+    response = self.make_response(rv)
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 2134, in make_response
+    raise TypeError(
+TypeError: The view function for 'health' did not return a valid response. The function either returned None or ended without a return statement.
+INFO:werkzeug:127.0.0.1 - - [30/Nov/2022 11:36:23] "[35m[1mPOST /health HTTP/1.1[0m" 500 -
+ERROR:pink:Exception on /health [POST]
+Traceback (most recent call last):
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 1823, in full_dispatch_request
+    return self.finalize_request(rv)
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 1842, in finalize_request
+    response = self.make_response(rv)
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 2134, in make_response
+    raise TypeError(
+TypeError: The view function for 'health' did not return a valid response. The function either returned None or ended without a return statement.
+INFO:werkzeug:127.0.0.1 - - [30/Nov/2022 11:36:25] "[35m[1mPOST /health HTTP/1.1[0m" 500 -
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+ERROR:pink:Exception on /health [POST]
+Traceback (most recent call last):
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 1823, in full_dispatch_request
+    return self.finalize_request(rv)
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 1842, in finalize_request
+    response = self.make_response(rv)
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 2134, in make_response
+    raise TypeError(
+TypeError: The view function for 'health' did not return a valid response. The function either returned None or ended without a return statement.
+INFO:werkzeug:127.0.0.1 - - [30/Nov/2022 11:36:49] "[35m[1mPOST /health HTTP/1.1[0m" 500 -
+ERROR:pink:Exception on /health [POST]
+Traceback (most recent call last):
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 1823, in full_dispatch_request
+    return self.finalize_request(rv)
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 1842, in finalize_request
+    response = self.make_response(rv)
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 2134, in make_response
+    raise TypeError(
+TypeError: The view function for 'health' did not return a valid response. The function either returned None or ended without a return statement.
+INFO:werkzeug:127.0.0.1 - - [30/Nov/2022 11:36:51] "[35m[1mPOST /health HTTP/1.1[0m" 500 -
+ERROR:pink:Exception on /health [POST]
+Traceback (most recent call last):
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 1823, in full_dispatch_request
+    return self.finalize_request(rv)
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 1842, in finalize_request
+    response = self.make_response(rv)
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 2134, in make_response
+    raise TypeError(
+TypeError: The view function for 'health' did not return a valid response. The function either returned None or ended without a return statement.
+INFO:werkzeug:127.0.0.1 - - [30/Nov/2022 11:36:53] "[35m[1mPOST /health HTTP/1.1[0m" 500 -
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+ERROR:pink:Exception on /health [POST]
+Traceback (most recent call last):
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 1823, in full_dispatch_request
+    return self.finalize_request(rv)
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 1842, in finalize_request
+    response = self.make_response(rv)
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 2134, in make_response
+    raise TypeError(
+TypeError: The view function for 'health' did not return a valid response. The function either returned None or ended without a return statement.
+INFO:werkzeug:127.0.0.1 - - [30/Nov/2022 11:38:32] "[35m[1mPOST /health HTTP/1.1[0m" 500 -
+ERROR:pink:Exception on /health [POST]
+Traceback (most recent call last):
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 1823, in full_dispatch_request
+    return self.finalize_request(rv)
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 1842, in finalize_request
+    response = self.make_response(rv)
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 2134, in make_response
+    raise TypeError(
+TypeError: The view function for 'health' did not return a valid response. The function either returned None or ended without a return statement.
+INFO:werkzeug:127.0.0.1 - - [30/Nov/2022 11:38:34] "[35m[1mPOST /health HTTP/1.1[0m" 500 -
+ERROR:pink:Exception on /health [POST]
+Traceback (most recent call last):
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 1823, in full_dispatch_request
+    return self.finalize_request(rv)
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 1842, in finalize_request
+    response = self.make_response(rv)
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 2134, in make_response
+    raise TypeError(
+TypeError: The view function for 'health' did not return a valid response. The function either returned None or ended without a return statement.
+INFO:werkzeug:127.0.0.1 - - [30/Nov/2022 11:38:36] "[35m[1mPOST /health HTTP/1.1[0m" 500 -
+ERROR:pink:Exception on /health [POST]
+Traceback (most recent call last):
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 1823, in full_dispatch_request
+    return self.finalize_request(rv)
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 1842, in finalize_request
+    response = self.make_response(rv)
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 2134, in make_response
+    raise TypeError(
+TypeError: The view function for 'health' did not return a valid response. The function either returned None or ended without a return statement.
+INFO:werkzeug:127.0.0.1 - - [30/Nov/2022 11:38:38] "[35m[1mPOST /health HTTP/1.1[0m" 500 -
+ERROR:pink:Exception on /health [POST]
+Traceback (most recent call last):
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 1823, in full_dispatch_request
+    return self.finalize_request(rv)
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 1842, in finalize_request
+    response = self.make_response(rv)
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 2134, in make_response
+    raise TypeError(
+TypeError: The view function for 'health' did not return a valid response. The function either returned None or ended without a return statement.
+INFO:werkzeug:127.0.0.1 - - [30/Nov/2022 11:38:40] "[35m[1mPOST /health HTTP/1.1[0m" 500 -
+ERROR:pink:Exception on /health [POST]
+Traceback (most recent call last):
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 1823, in full_dispatch_request
+    return self.finalize_request(rv)
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 1842, in finalize_request
+    response = self.make_response(rv)
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 2134, in make_response
+    raise TypeError(
+TypeError: The view function for 'health' did not return a valid response. The function either returned None or ended without a return statement.
+INFO:werkzeug:127.0.0.1 - - [30/Nov/2022 11:38:42] "[35m[1mPOST /health HTTP/1.1[0m" 500 -
+ERROR:pink:Exception on /health [POST]
+Traceback (most recent call last):
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 1823, in full_dispatch_request
+    return self.finalize_request(rv)
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 1842, in finalize_request
+    response = self.make_response(rv)
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 2134, in make_response
+    raise TypeError(
+TypeError: The view function for 'health' did not return a valid response. The function either returned None or ended without a return statement.
+INFO:werkzeug:127.0.0.1 - - [30/Nov/2022 11:38:44] "[35m[1mPOST /health HTTP/1.1[0m" 500 -
+ERROR:pink:Exception on /health [POST]
+Traceback (most recent call last):
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 1823, in full_dispatch_request
+    return self.finalize_request(rv)
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 1842, in finalize_request
+    response = self.make_response(rv)
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 2134, in make_response
+    raise TypeError(
+TypeError: The view function for 'health' did not return a valid response. The function either returned None or ended without a return statement.
+INFO:werkzeug:127.0.0.1 - - [30/Nov/2022 11:38:46] "[35m[1mPOST /health HTTP/1.1[0m" 500 -
+ERROR:pink:Exception on /health [POST]
+Traceback (most recent call last):
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 1823, in full_dispatch_request
+    return self.finalize_request(rv)
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 1842, in finalize_request
+    response = self.make_response(rv)
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 2134, in make_response
+    raise TypeError(
+TypeError: The view function for 'health' did not return a valid response. The function either returned None or ended without a return statement.
+INFO:werkzeug:127.0.0.1 - - [30/Nov/2022 11:38:48] "[35m[1mPOST /health HTTP/1.1[0m" 500 -
+ERROR:pink:Exception on /health [POST]
+Traceback (most recent call last):
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 1823, in full_dispatch_request
+    return self.finalize_request(rv)
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 1842, in finalize_request
+    response = self.make_response(rv)
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 2134, in make_response
+    raise TypeError(
+TypeError: The view function for 'health' did not return a valid response. The function either returned None or ended without a return statement.
+INFO:werkzeug:127.0.0.1 - - [30/Nov/2022 11:38:50] "[35m[1mPOST /health HTTP/1.1[0m" 500 -
+ERROR:pink:Exception on /health [POST]
+Traceback (most recent call last):
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 1823, in full_dispatch_request
+    return self.finalize_request(rv)
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 1842, in finalize_request
+    response = self.make_response(rv)
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 2134, in make_response
+    raise TypeError(
+TypeError: The view function for 'health' did not return a valid response. The function either returned None or ended without a return statement.
+INFO:werkzeug:127.0.0.1 - - [30/Nov/2022 11:38:52] "[35m[1mPOST /health HTTP/1.1[0m" 500 -
+ERROR:pink:Exception on /health [POST]
+Traceback (most recent call last):
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 1823, in full_dispatch_request
+    return self.finalize_request(rv)
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 1842, in finalize_request
+    response = self.make_response(rv)
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 2134, in make_response
+    raise TypeError(
+TypeError: The view function for 'health' did not return a valid response. The function either returned None or ended without a return statement.
+INFO:werkzeug:127.0.0.1 - - [30/Nov/2022 11:38:54] "[35m[1mPOST /health HTTP/1.1[0m" 500 -
+ERROR:pink:Exception on /health [POST]
+Traceback (most recent call last):
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 1823, in full_dispatch_request
+    return self.finalize_request(rv)
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 1842, in finalize_request
+    response = self.make_response(rv)
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 2134, in make_response
+    raise TypeError(
+TypeError: The view function for 'health' did not return a valid response. The function either returned None or ended without a return statement.
+INFO:werkzeug:127.0.0.1 - - [30/Nov/2022 11:38:56] "[35m[1mPOST /health HTTP/1.1[0m" 500 -
+ERROR:pink:Exception on /health [POST]
+Traceback (most recent call last):
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 1823, in full_dispatch_request
+    return self.finalize_request(rv)
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 1842, in finalize_request
+    response = self.make_response(rv)
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 2134, in make_response
+    raise TypeError(
+TypeError: The view function for 'health' did not return a valid response. The function either returned None or ended without a return statement.
+INFO:werkzeug:127.0.0.1 - - [30/Nov/2022 11:38:58] "[35m[1mPOST /health HTTP/1.1[0m" 500 -
+ERROR:pink:Exception on /health [POST]
+Traceback (most recent call last):
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 1823, in full_dispatch_request
+    return self.finalize_request(rv)
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 1842, in finalize_request
+    response = self.make_response(rv)
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 2134, in make_response
+    raise TypeError(
+TypeError: The view function for 'health' did not return a valid response. The function either returned None or ended without a return statement.
+INFO:werkzeug:127.0.0.1 - - [30/Nov/2022 11:39:00] "[35m[1mPOST /health HTTP/1.1[0m" 500 -
+ERROR:pink:Exception on /health [POST]
+Traceback (most recent call last):
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 1823, in full_dispatch_request
+    return self.finalize_request(rv)
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 1842, in finalize_request
+    response = self.make_response(rv)
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 2134, in make_response
+    raise TypeError(
+TypeError: The view function for 'health' did not return a valid response. The function either returned None or ended without a return statement.
+INFO:werkzeug:127.0.0.1 - - [30/Nov/2022 11:39:02] "[35m[1mPOST /health HTTP/1.1[0m" 500 -
+ERROR:pink:Exception on /health [POST]
+Traceback (most recent call last):
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 1823, in full_dispatch_request
+    return self.finalize_request(rv)
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 1842, in finalize_request
+    response = self.make_response(rv)
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 2134, in make_response
+    raise TypeError(
+TypeError: The view function for 'health' did not return a valid response. The function either returned None or ended without a return statement.
+INFO:werkzeug:127.0.0.1 - - [30/Nov/2022 11:39:04] "[35m[1mPOST /health HTTP/1.1[0m" 500 -
+ERROR:pink:Exception on /health [POST]
+Traceback (most recent call last):
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 1823, in full_dispatch_request
+    return self.finalize_request(rv)
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 1842, in finalize_request
+    response = self.make_response(rv)
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 2134, in make_response
+    raise TypeError(
+TypeError: The view function for 'health' did not return a valid response. The function either returned None or ended without a return statement.
+INFO:werkzeug:127.0.0.1 - - [30/Nov/2022 11:39:06] "[35m[1mPOST /health HTTP/1.1[0m" 500 -
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+ERROR:pink:Exception on /health [POST]
+Traceback (most recent call last):
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 1823, in full_dispatch_request
+    return self.finalize_request(rv)
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 1842, in finalize_request
+    response = self.make_response(rv)
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 2134, in make_response
+    raise TypeError(
+TypeError: The view function for 'health' did not return a valid response. The function either returned None or ended without a return statement.
+INFO:werkzeug:127.0.0.1 - - [30/Nov/2022 11:39:11] "[35m[1mPOST /health HTTP/1.1[0m" 500 -
+ERROR:pink:Exception on /health [POST]
+Traceback (most recent call last):
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 1823, in full_dispatch_request
+    return self.finalize_request(rv)
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 1842, in finalize_request
+    response = self.make_response(rv)
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 2134, in make_response
+    raise TypeError(
+TypeError: The view function for 'health' did not return a valid response. The function either returned None or ended without a return statement.
+INFO:werkzeug:127.0.0.1 - - [30/Nov/2022 11:39:13] "[35m[1mPOST /health HTTP/1.1[0m" 500 -
+ERROR:pink:Exception on /health [POST]
+Traceback (most recent call last):
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 1823, in full_dispatch_request
+    return self.finalize_request(rv)
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 1842, in finalize_request
+    response = self.make_response(rv)
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 2134, in make_response
+    raise TypeError(
+TypeError: The view function for 'health' did not return a valid response. The function either returned None or ended without a return statement.
+INFO:werkzeug:127.0.0.1 - - [30/Nov/2022 11:39:15] "[35m[1mPOST /health HTTP/1.1[0m" 500 -
+ERROR:pink:Exception on /health [POST]
+Traceback (most recent call last):
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 1823, in full_dispatch_request
+    return self.finalize_request(rv)
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 1842, in finalize_request
+    response = self.make_response(rv)
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 2134, in make_response
+    raise TypeError(
+TypeError: The view function for 'health' did not return a valid response. The function either returned None or ended without a return statement.
+INFO:werkzeug:127.0.0.1 - - [30/Nov/2022 11:39:18] "[35m[1mPOST /health HTTP/1.1[0m" 500 -
+ERROR:pink:Exception on /health [POST]
+Traceback (most recent call last):
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 1823, in full_dispatch_request
+    return self.finalize_request(rv)
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 1842, in finalize_request
+    response = self.make_response(rv)
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 2134, in make_response
+    raise TypeError(
+TypeError: The view function for 'health' did not return a valid response. The function either returned None or ended without a return statement.
+INFO:werkzeug:127.0.0.1 - - [30/Nov/2022 11:39:20] "[35m[1mPOST /health HTTP/1.1[0m" 500 -
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+ERROR:pink:Exception on /health [POST]
+Traceback (most recent call last):
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 1823, in full_dispatch_request
+    return self.finalize_request(rv)
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 1842, in finalize_request
+    response = self.make_response(rv)
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 2134, in make_response
+    raise TypeError(
+TypeError: The view function for 'health' did not return a valid response. The function either returned None or ended without a return statement.
+INFO:werkzeug:127.0.0.1 - - [30/Nov/2022 11:39:38] "[35m[1mPOST /health HTTP/1.1[0m" 500 -
+ERROR:pink:Exception on /health [POST]
+Traceback (most recent call last):
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 1823, in full_dispatch_request
+    return self.finalize_request(rv)
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 1842, in finalize_request
+    response = self.make_response(rv)
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 2134, in make_response
+    raise TypeError(
+TypeError: The view function for 'health' did not return a valid response. The function either returned None or ended without a return statement.
+INFO:werkzeug:127.0.0.1 - - [30/Nov/2022 11:39:40] "[35m[1mPOST /health HTTP/1.1[0m" 500 -
+ERROR:pink:Exception on /health [POST]
+Traceback (most recent call last):
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 1823, in full_dispatch_request
+    return self.finalize_request(rv)
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 1842, in finalize_request
+    response = self.make_response(rv)
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 2134, in make_response
+    raise TypeError(
+TypeError: The view function for 'health' did not return a valid response. The function either returned None or ended without a return statement.
+INFO:werkzeug:127.0.0.1 - - [30/Nov/2022 11:39:42] "[35m[1mPOST /health HTTP/1.1[0m" 500 -
+ERROR:pink:Exception on /health [POST]
+Traceback (most recent call last):
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 1823, in full_dispatch_request
+    return self.finalize_request(rv)
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 1842, in finalize_request
+    response = self.make_response(rv)
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 2134, in make_response
+    raise TypeError(
+TypeError: The view function for 'health' did not return a valid response. The function either returned None or ended without a return statement.
+INFO:werkzeug:127.0.0.1 - - [30/Nov/2022 11:39:44] "[35m[1mPOST /health HTTP/1.1[0m" 500 -
+ERROR:pink:Exception on /health [POST]
+Traceback (most recent call last):
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 1823, in full_dispatch_request
+    return self.finalize_request(rv)
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 1842, in finalize_request
+    response = self.make_response(rv)
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 2134, in make_response
+    raise TypeError(
+TypeError: The view function for 'health' did not return a valid response. The function either returned None or ended without a return statement.
+INFO:werkzeug:127.0.0.1 - - [30/Nov/2022 12:06:29] "[35m[1mPOST /health HTTP/1.1[0m" 500 -
+ERROR:pink:Exception on /health [POST]
+Traceback (most recent call last):
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 1823, in full_dispatch_request
+    return self.finalize_request(rv)
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 1842, in finalize_request
+    response = self.make_response(rv)
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 2134, in make_response
+    raise TypeError(
+TypeError: The view function for 'health' did not return a valid response. The function either returned None or ended without a return statement.
+INFO:werkzeug:127.0.0.1 - - [30/Nov/2022 12:06:31] "[35m[1mPOST /health HTTP/1.1[0m" 500 -
+ERROR:pink:Exception on /health [POST]
+Traceback (most recent call last):
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 1823, in full_dispatch_request
+    return self.finalize_request(rv)
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 1842, in finalize_request
+    response = self.make_response(rv)
+  File "/home/pes1ug20cs452/.local/lib/python3.10/site-packages/flask/app.py", line 2134, in make_response
+    raise TypeError(
+TypeError: The view function for 'health' did not return a valid response. The function either returned None or ended without a return statement.
+INFO:werkzeug:127.0.0.1 - - [30/Nov/2022 12:06:34] "[35m[1mPOST /health HTTP/1.1[0m" 500 -

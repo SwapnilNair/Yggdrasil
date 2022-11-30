@@ -4,7 +4,7 @@ import random
 import sys
 import time
 
-sys.path.append(os.getcwd()+"/src/norse")
+sys.path.append(os.getcwd()+"/src")
 
 import norse
 
