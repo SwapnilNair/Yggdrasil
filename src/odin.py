@@ -35,9 +35,12 @@ class Odin():
         self.heimdallId = 0
         self.heimdallIdLock = th.Lock()
 
+
         self.healthThreadNo = None
         self.healthapi = Flask(name)
         self.isleaderElectionCurrentlyHappening = True
+
+        self.metadataLock =  th.Lock()
 
         '''
             Endpoint setups
@@ -45,7 +48,7 @@ class Odin():
         self.addEndpoint(endpoint='/health',endpoint_name='health',handler=self.handleHealthEndpoint)
         self.addEndpointGet(endpoint='/metadata',endpoint_name='metadata',handler=self.metadataEndpoint)
         self.addEndpointGet(endpoint='/leader',endpoint_name='leader',handler=self.leaderInfoEndpoint)
-
+        self.addEndpoint(endpoint='/updateMetadata',endpoint_name='updateMetadata',handler = self.updateMetadata)
         '''
             Timers for brokers
         '''
@@ -181,3 +184,11 @@ class Odin():
             else:
                 print("ERROR[ODIN] : No Heimdalls active! Awaiting Heimdall connections!")
                 self.isleaderElectionCurrentlyHappening = True
+    '''
+    Update metadata every cycle
+    '''
+    def updateMetadata(self,newMetadata):
+        self.metadataLock.acquire(blocking=True)
+        self.metadata = newMetadata;
+        self.metadataLock.release()
+        return '1'
