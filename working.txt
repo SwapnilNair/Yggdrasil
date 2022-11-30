@@ -1,0 +1,59 @@
+heimdall 0 [leader] => Orders(0), 
+heimdall 1 => Orders(1)
+heimdall 2 => Orders(2)
+
+
+Consumer => sub("Orders") => req => all brokers => broker save topic, consumer (ip,port) => 
+Consumer 
+    => req 
+    => broker(0,1,2) [in threads] 
+    => broker checks what topics consumer has subscribed to
+    => for that broker whichever partition check partition_offset - consumer_partition_offset
+    => take messages[consumer_p_offset:partition_offset] 
+    => send to consumer
+    => inc offset for consumer
+
+
+3 Brokers [fixed]
+3 Partitions per topic [fixed]
+3 replication factor [fixed]
+if broker dies, let him/her/them/it die,
+    zookeeper change leader
+    zookeeper send metadata through heartbeat response
+    consumer requests alive broker for data
+
+Orders :
+    Grocery =>> p0 [b0]
+    Dairy =>> p1 [b1]
+    Non-Food =>> p2 [b2]
+
+Producer 
+    => at init req zookeeper for meta data
+    => zookeeper sends leader broker info 
+
+    When broker dies 
+        => producer cant send anymore => gets connection refused error
+        => producer sends request to zookeeper
+        => zookeeper 
+            => replies HOGO LO if leader election is currently taking place (keep a flag)
+            => replies with new leader if election is complete
+
+    producer => Sends message to new leader
+
+Consumer 
+
+TODO : 
+    - Parse Meta data
+    - Create topic & partitions
+    - Write messages to files which come from producer [HEIMDALL]
+    - leader election [ODIN]
+    - Write partitions to resp brokers [HEIMDALL]
+        - OFFSET !
+    - sending messages to consumer [HEIMDALL]
+        - OFFSET !
+    - updating metadata in zookeeper [HEIMDALL / ODIN]
+
+B1 B2 B3
+P1 P2 P3
+P2 P3 P1
+P3 P1 P2
