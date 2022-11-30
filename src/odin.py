@@ -1,8 +1,11 @@
-from flask import Flask ,request  
-import _thread,logging
+import _thread
 import json
-import threading as th 
-logging.basicConfig(filename='eventlog.log', level=logging.INFO)
+import logging
+import threading as th
+
+from flask import Flask, request
+
+# logging.basicConfig(filename='eventlog.log', level=logging.INFO)
 
 #data = 'Hello from the other side...'
 
@@ -22,15 +25,16 @@ class Odin():
         healthapi = Flask application object
         metadata = 
     '''
-    brokerid = 0
+    heimdallId = -1
     _bufferForceFlushTimer = None
     healthapi = None
     metadata = ""
     leader = 0
     metafile = open('./data/metadata.json','r')
-    metadata = json.load(metafile)
 
     def __init__(self,name):
+        self.heimdallIdLock = th.Lock()
+
         self.healthThreadNo = None
         self.healthapi = Flask(name)
         '''
@@ -43,6 +47,7 @@ class Odin():
         self.b1_timer = None
         self.b2_timer = None
         self.b3_timer = None
+        self.metadata = json.load(self.metafile)
 
     def run(self):
         self.healthapi.run()
@@ -73,15 +78,20 @@ class Odin():
 
     def handleHealthEndpoint(self):   
         rcvd_from = request.json['heimdallId']
-        print(request.json)
-        print("MESSAGE[ODIN] : Received Heartbeat from broker " +request.json['heimdallId'] " at "+ request.json['heimdallIp'] + " at port " + request.json['heimdallPort'])
+        # print(request.json)
+        print("MESSAGE[ODIN] : Received Heartbeat from broker " + request.json['heimdallId'] + " at "+ request.json['heimdallIp'] + " at port " + request.json['heimdallPort'])
         #log here
+        metadataJSON = {'data':self.metadata}
 
         # if new broker, add broker info to metadata and send broker its assigned id
         if int(rcvd_from) == -1:
-            self.brokerid +=1
-            self.metadata['heimdalls'][self.brokerid]['ip'] = request.json['heimdallIp']
-            self.metadata['heimdalls'][self.brokerid]['port'] = request.json['heimdallPort']
+            self.heimdallIdLock.acquire(blocking=True)
+            self.heimdallId += 1
+            self.metadata['heimdalls'][str(self.heimdallId)]['ip'] = request.json['heimdallIp']
+            self.metadata['heimdalls'][str(self.heimdallId)]['port'] = request.json['heimdallPort']
+            metadataJSON['heimdallId'] = self.heimdallId
+            self.heimdallIdLock.release()
+            return json.dumps(metadataJSON)
 
         if int(rcvd_from) == 0:
             if self.b1_timer != None:
@@ -101,10 +111,9 @@ class Odin():
             if self.b3_timer != None:
                 self.b3_timer.cancel()
             self.b3_timer = th.Timer(4,self.brokerded,(2,))
-            self.b2_timer.start()
+            self.b3_timer.start()
 
-        metadataJSON = json.dumps({'data':self.metadata,'brokerid':self.})
-        return metadataJSON
+        return json.dumps(metadataJSON)
     
 
 
