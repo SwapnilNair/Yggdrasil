@@ -35,16 +35,23 @@ class Odin():
         self.heimdallId = 0
         self.heimdallIdLock = th.Lock()
 
+
         self.healthThreadNo = None
         self.healthapi = Flask(name)
         self.isleaderElectionCurrentlyHappening = True
+
+        self.metadataLock =  th.Lock()
+
         '''
             Endpoint setups
         '''
         self.addEndpoint(endpoint='/health',endpoint_name='health',handler=self.handleHealthEndpoint)
         self.addEndpointGet(endpoint='/metadata',endpoint_name='metadata',handler=self.metadataEndpoint)
         self.addEndpointGet(endpoint='/leader',endpoint_name='leader',handler=self.leaderInfoEndpoint)
-
+        self.addEndpoint(endpoint='/updateMetadata',endpoint_name='updateMetadata',handler = self.updateMetadata)
+        '''
+            Timers for brokers
+        '''
         self.b1_timer = None
         self.b2_timer = None
         self.b3_timer = None
@@ -54,8 +61,12 @@ class Odin():
 
         self.leaderElection()
 
+        '''
+            Healthapi is the flask application
+        '''
     def run(self):
         self.healthapi.run()
+
         '''
             Function add decorators
         '''
@@ -73,8 +84,13 @@ class Odin():
         while(True):
             pass
 
+
+ '''
+    Endpoints
+ '''           
+
     '''
-        Endpoints
+        Reset Heimdall when it goes damaar
     '''
     def resetHeimdall(self, id):
         self.metadata["heimdalls"][str(id)] = {
@@ -82,13 +98,18 @@ class Odin():
             "port": ""
         }
 
+    '''
+        Heimdall damaar handling 
+    '''    
     def handleHeimdallDeath(self,x):
         print("Broker " + str(x) + "died")
         # update metadata
         self.resetHeimdall(x)
         self.leaderElection()
         
-
+    '''
+        Heartbeats ,id allotment and damaar detection
+    '''
     def handleHealthEndpoint(self):   
         rcvd_from = request.json['heimdallId']
         # print(request.json)
@@ -129,17 +150,26 @@ class Odin():
 
         return json.dumps(metadataJSON)
     
+    '''
+        Metadata endpoint 
+    '''
     def metadataEndpoint(self):
         #Returned string initially, but I think this is way more convenient for comms
         metadataJSON = json.dumps({'data':self.metadata})
         return metadataJSON
 
+    '''
+        Return leader broker id
+    '''
     def leaderInfoEndpoint(self):
         if self.isleaderElectionCurrentlyHappening == True:
             return json.dumps({"leader": "-1"})
         leaderInfo = self.metadata['leader']
         return json.dumps({"leader": self.metadata["heimdalls"][leaderInfo]})
 
+    '''
+        Round robin leader election
+    '''
     def leaderElection(self):
         print("MESSAGE[ODIN] : Conducting leader election")
         self.isleaderElectionCurrentlyHappening = True
@@ -151,6 +181,14 @@ class Odin():
                 self.isleaderElectionCurrentlyHappening = False
                 print("MESSAGE[ODIN] : New leader elected : {}".format(self.leader))
                 break
-        else:
-            print("ERROR[ODIN] : No Heimdalls active! Awaiting Heimdall connections!")
-            self.isleaderElectionCurrentlyHappening = True
+            else:
+                print("ERROR[ODIN] : No Heimdalls active! Awaiting Heimdall connections!")
+                self.isleaderElectionCurrentlyHappening = True
+    '''
+    Update metadata every cycle
+    '''
+    def updateMetadata(self,newMetadata):
+        self.metadataLock.acquire(blocking=True)
+        self.metadata = newMetadata;
+        self.metadataLock.release()
+        return '1'
