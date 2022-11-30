@@ -25,7 +25,6 @@ class Odin():
         healthapi = Flask application object
         metadata = 
     '''
-    heimdallId = -1
     _bufferForceFlushTimer = None
     healthapi = None
     metadata = ""
@@ -33,6 +32,7 @@ class Odin():
     metafile = open('./data/metadata.json','r')
 
     def __init__(self,name):
+        self.heimdallId = 0
         self.heimdallIdLock = th.Lock()
 
         self.healthThreadNo = None
@@ -60,18 +60,17 @@ class Odin():
     def addEndpointget(self,endpoint=None,endpoint_name = None,handler=None):
         self.healthapi.add_url_rule(endpoint, endpoint_name,handler,methods=['GET'])
 
-        '''
-            Server threading
-        '''
+    '''
+        Server threading
+    '''
     def serve(self):
         self.healthThreadNo = _thread.start_new_thread(self.run, ())
         while(True):
             pass
 
-        '''
-                Endpoints
-        '''
-
+    '''
+        Endpoints
+    '''
     def brokerded(self,x):
         print("Broker " + str(x) + "died")
         return 1
@@ -93,24 +92,24 @@ class Odin():
             self.heimdallIdLock.release()
             return json.dumps(metadataJSON)
 
-        if int(rcvd_from) == 0:
+        if int(rcvd_from) == 1:
             if self.b1_timer != None:
                 self.b1_timer.cancel()
                 print("stopping timer")
             print("Starting new timer...")
-            self.b1_timer = th.Timer(4,self.brokerded,(0,))
+            self.b1_timer = th.Timer(4,self.brokerded,(1,))
             self.b1_timer.start()
             
-        if int(rcvd_from) == 1:
+        if int(rcvd_from) == 2:
             if self.b2_timer != None:
                 self.b2_timer.cancel()
-            self.b2_timer = th.Timer(4,self.brokerded,(1,))
+            self.b2_timer = th.Timer(4,self.brokerded,(2,))
             self.b2_timer.start()
 
-        if int(rcvd_from) == 2:
+        if int(rcvd_from) == 3:
             if self.b3_timer != None:
                 self.b3_timer.cancel()
-            self.b3_timer = th.Timer(4,self.brokerded,(2,))
+            self.b3_timer = th.Timer(4,self.brokerded,(3,))
             self.b3_timer.start()
 
         return json.dumps(metadataJSON)

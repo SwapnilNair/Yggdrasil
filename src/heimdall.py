@@ -1,4 +1,5 @@
 import base64
+import hashlib
 import threading
 import zlib
 from json import dumps, loads
@@ -11,7 +12,10 @@ import requests
 
 import errors
 import messages
+import partition
+import topic
 
+BASE_LOG_PATH = "C:/logs/"
 
 class Heimdall():
     """
@@ -32,7 +36,9 @@ class Heimdall():
 
         self._heartbeatMessage = None
 
-        # self._metadata = self.getMetaData()
+        self._metadataHash = None
+        self._metadata = None
+        self._metadataLock = threading.Lock()
 
         # replication
         self._nBrokers = 3
@@ -47,15 +53,6 @@ class Heimdall():
         self._threadedSocketServer = None
         self._threadedSocketServerThread = None
 
-    def parseMetaData(self, metadata):
-        # create topics
-        # create partitions
-        pass
-
-    def getMetaData(self):
-        r = requests.get(f'http://{self._zookeeperIp}:{self._zookeeperPort}/metadata')
-        data = r.json()["data"]
-        return data
 
     def initHealthProc(self):
         """
@@ -72,10 +69,31 @@ class Heimdall():
         """
         Serves client to send heartbeats to Zookeeper
         """
-        k = 3
+        k = 10
         for i in range(k):
             self.sendHeartBeat()
-            sleep(3)
+            sleep(1)
+
+    def parseMetaData(self, metadata):
+        topics = metadata["topics"]
+        # create topics
+        for t in topics:
+            t_ = topic.Topic(topicName=t, logPath=topics[t]["logPath"])
+            print(t_)
+            # create partitions
+
+            # partitions in current broker
+            partitions = list(
+                filter(lambda p: int(p["heimdallId"]) == self._id, topics[t]["partitions"])
+            )
+            for part in partitions:
+                p = partition.Partition(
+                    partitionId=part["partitionId"],
+                    isReplica=part["isReplica"],
+                    logPath=part["logPath"]
+                )
+                print(p)
+
 
     def sendHeartBeat(self):
         """
@@ -92,15 +110,21 @@ class Heimdall():
                     "heimdallPort": str(self._port),
                 }
             )
-            # print(r)
             data = r.json()
-            # print(data)
             # set heimdall id
-            if data.get("heimdallId"):
+            if data.get("heimdallId") != None:
                 self._id = int(data.get("heimdallId"))
                 print("MESSAGE[HEIMDALL] : Assigned ID : {}".format(self._id))
             
             # parse the metadata and create topics and partitions
+            # compare hash to check if metadata was changed
+            new_hash = hashlib.sha256(dumps(data.get("data")).encode("utf-8")).hexdigest()
+
+            if new_hash != self._metadataHash:
+                self._metadataHash = new_hash
+                self._metadataLock.acquire(blocking=True)
+                self.parseMetaData(data.get("data"))
+                self._metadataLock.release()
 
             # reset fail count
             self._heartBeatRequestRetryFailCount = 0
