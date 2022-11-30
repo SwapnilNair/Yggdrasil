@@ -22,11 +22,11 @@ class Norse():
         self._socketStorage = None
         self._leaderHeimdall = None
         
-    def sendMessage(self, topic):
+    def sendMessage(self, topic, time):
         self._socketStorage = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         try:
             self._socketStorage.connect((self._leaderHeimdall["heimdallIp"], self._leaderHeimdall["heimdallPort"]))
-            dataString = json.dumps(self.wrapMessage({'topic': topic, 'messages': self._incomingMessages[topic]}))
+            dataString = json.dumps(self.wrapMessage({'topic': topic, 'payload': self._incomingMessages[topic]}))
             self._socketStorage.send(dataString.encode('utf-8'))
             print("data sent to Heimdall")
             self._socketStorage.close()
@@ -42,7 +42,7 @@ class Norse():
             self._bufferForceFlushTimer.cancel()
         if not self._incomingMessages.get(topic):
             self._incomingMessages[topic] = []
-        self._incomingMessages[topic].append(message)
+        self._incomingMessages[topic].append({**message, 'timestamp':str(datetime.now())})
         if(len(self._incomingMessages[topic]) == self._bufferSize):
             self.sendMessage(topic)
             self._incomingMessages[topic].clear()
@@ -56,7 +56,7 @@ class Norse():
     
     
     def wrapMessage(self, message):
-        return {"nodeType" : "norse", "nodeID": str(self._producerID), 'message':self.compressMessage(message), "timestamp": str(datetime.now())}
+        return {"nodeType" : "norse", "nodeID": str(self._producerID), 'payload':self.compressMessage(message)}
 
 
     def checkForLeaderHeimdall(self):
