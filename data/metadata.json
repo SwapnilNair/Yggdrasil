@@ -5,7 +5,7 @@
         "1": {
             "ip": "",
             "port": ""
-        }, 
+        },
         "2": {
             "ip": "",
             "port": ""
@@ -19,14 +19,31 @@
     "topics": {
         "topic1": {
             "name": "topic1",
-            "partitions": {
-                "brokerId": "",
-                "isReplica": "",
-                "logPath": "",
-                "offset": 0
-            },
-            "logPath": "",
-            "createdAt": ""
+            "logPath": "C:/logs/topic1",
+            "createdAt": "",
+            "partitions": [
+                {
+                    "partitionId": "1",
+                    "heimdallId": "1",
+                    "isReplica": false,
+                    "logPath": "C:/logs/topic1/partition1.json",
+                    "offset": 0
+                },
+                {
+                    "partitionId": "2",
+                    "heimdallId": "2",
+                    "isReplica": false,
+                    "logPath": "C:/logs/topic1/partition2.json",
+                    "offset": 0
+                },
+                {
+                    "partitionId": "3",
+                    "heimdallId": "3",
+                    "isReplica": false,
+                    "logPath": "C:/logs/topic1/partition3.json",
+                    "offset": 0
+                }
+            ]
         }
     }
 }
