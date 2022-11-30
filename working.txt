@@ -45,9 +45,9 @@ Consumer
 TODO : 
     - Parse Meta data
     - Create topic & partitions
-    - Write messages to files which come from producer [HEIMDALL]
+    - Write messages to files which come from producer [HEIMDALL] [in prog]
     - leader election [ODIN]
-    - Write partitions to resp brokers [HEIMDALL]
+    - Write partitions to resp brokers [HEIMDALL] [in prog]
         - OFFSET !
     - sending messages to consumer [HEIMDALL]
         - OFFSET !

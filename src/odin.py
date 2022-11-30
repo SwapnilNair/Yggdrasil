@@ -37,17 +37,22 @@ class Odin():
 
         self.healthThreadNo = None
         self.healthapi = Flask(name)
+        self.isleaderElectionCurrentlyHappening = True
         '''
             Endpoint setups
         '''
         self.addEndpoint(endpoint='/health',endpoint_name='health',handler=self.handleHealthEndpoint)
-        self.addEndpointget(endpoint='/metadata',endpoint_name='metadata',handler=self.metadataEndpoint)
-        self.addEndpoint(endpoint='/leader',endpoint_name='leader',handler=self.leaderInfoEndpoint)
+        self.addEndpointGet(endpoint='/metadata',endpoint_name='metadata',handler=self.metadataEndpoint)
+        self.addEndpointGet(endpoint='/leader',endpoint_name='leader',handler=self.leaderInfoEndpoint)
 
         self.b1_timer = None
         self.b2_timer = None
         self.b3_timer = None
         self.metadata = json.load(self.metafile)
+
+        # TODO : cleanup | rebalance partitions!!
+
+        self.leaderElection()
 
     def run(self):
         self.healthapi.run()
@@ -57,7 +62,7 @@ class Odin():
     def addEndpoint(self,endpoint=None,endpoint_name = None,handler=None):
         self.healthapi.add_url_rule(endpoint, endpoint_name,handler,methods=['POST'])
 
-    def addEndpointget(self,endpoint=None,endpoint_name = None,handler=None):
+    def addEndpointGet(self,endpoint=None,endpoint_name = None,handler=None):
         self.healthapi.add_url_rule(endpoint, endpoint_name,handler,methods=['GET'])
 
     '''
@@ -71,9 +76,18 @@ class Odin():
     '''
         Endpoints
     '''
-    def brokerded(self,x):
+    def resetHeimdall(self, id):
+        self.metadata["heimdalls"][str(id)] = {
+            "ip": "",
+            "port": ""
+        }
+
+    def handleHeimdallDeath(self,x):
         print("Broker " + str(x) + "died")
-        return 1
+        # update metadata
+        self.resetHeimdall(x)
+        self.leaderElection()
+        
 
     def handleHealthEndpoint(self):   
         rcvd_from = request.json['heimdallId']
@@ -88,7 +102,8 @@ class Odin():
             self.heimdallId += 1
             self.metadata['heimdalls'][str(self.heimdallId)]['ip'] = request.json['heimdallIp']
             self.metadata['heimdalls'][str(self.heimdallId)]['port'] = request.json['heimdallPort']
-            metadataJSON['heimdallId'] = self.heimdallId
+            self.leaderElection()
+            metadataJSON = {'data':self.metadata, 'heimdallId': self.heimdallId}
             self.heimdallIdLock.release()
             return json.dumps(metadataJSON)
 
@@ -97,36 +112,43 @@ class Odin():
                 self.b1_timer.cancel()
                 print("stopping timer")
             print("Starting new timer...")
-            self.b1_timer = th.Timer(4,self.brokerded,(1,))
+            self.b1_timer = th.Timer(4,self.handleHeimdallDeath,(1,))
             self.b1_timer.start()
             
         if int(rcvd_from) == 2:
             if self.b2_timer != None:
                 self.b2_timer.cancel()
-            self.b2_timer = th.Timer(4,self.brokerded,(2,))
+            self.b2_timer = th.Timer(4,self.handleHeimdallDeath,(2,))
             self.b2_timer.start()
 
         if int(rcvd_from) == 3:
             if self.b3_timer != None:
                 self.b3_timer.cancel()
-            self.b3_timer = th.Timer(4,self.brokerded,(3,))
+            self.b3_timer = th.Timer(4,self.handleHeimdallDeath,(3,))
             self.b3_timer.start()
 
         return json.dumps(metadataJSON)
     
-
-
     def metadataEndpoint(self):
         #Returned string initially, but I think this is way more convenient for comms
         metadataJSON = json.dumps({'data':self.metadata})
         return metadataJSON
 
     def leaderInfoEndpoint(self):
+        if self.isleaderElectionCurrentlyHappening == True:
+            return json.dumps({"leader": "-1"})
         leaderInfo = self.metadata['leader']
-        return leaderInfo
+        return json.dumps({"leader": self.metadata["heimdalls"][leaderInfo]})
 
-    def leaderelection(self,x):
-        self.leader = (x+1)%3
-        self.metadata['leader']
-        return self.leader
-
+    def leaderElection(self):
+        self.isleaderElectionCurrentlyHappening = True
+        # first heimdall found that is active
+        for h,v in self.metadata["heimdalls"].items():
+            if v["ip"] != "" and v["port"] != "":
+                self.leader = int(h)
+                self.metadata["leader"] = h
+                self.isleaderElectionCurrentlyHappening = False
+                break
+        else:
+            print("ERROR[ODIN] : No Heimdalls active! Awaiting Heimdall connections!")
+            self.isleaderElectionCurrentlyHappening = True

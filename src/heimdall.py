@@ -1,5 +1,6 @@
 import base64
 import hashlib
+import socket
 import threading
 import zlib
 from json import dumps, loads
@@ -53,7 +54,10 @@ class Heimdall():
         self._threadedSocketServer = None
         self._threadedSocketServerThread = None
 
-
+    """
+        HEARTBEATS -------------------------------------------------------
+    """
+    
     def initHealthProc(self):
         """
         Initialize the thread to serve the health client
@@ -69,31 +73,10 @@ class Heimdall():
         """
         Serves client to send heartbeats to Zookeeper
         """
-        k = 10
+        k = 15
         for i in range(k):
             self.sendHeartBeat()
             sleep(1)
-
-    def parseMetaData(self, metadata):
-        topics = metadata["topics"]
-        # create topics
-        for t in topics:
-            t_ = topic.Topic(topicName=t, logPath=topics[t]["logPath"])
-            print(t_)
-            # create partitions
-
-            # partitions in current broker
-            partitions = list(
-                filter(lambda p: int(p["heimdallId"]) == self._id, topics[t]["partitions"])
-            )
-            for part in partitions:
-                p = partition.Partition(
-                    partitionId=part["partitionId"],
-                    isReplica=part["isReplica"],
-                    logPath=part["logPath"]
-                )
-                print(p)
-
 
     def sendHeartBeat(self):
         """
@@ -116,14 +99,16 @@ class Heimdall():
                 self._id = int(data.get("heimdallId"))
                 print("MESSAGE[HEIMDALL] : Assigned ID : {}".format(self._id))
             
+            md = data.get("data")
             # parse the metadata and create topics and partitions
             # compare hash to check if metadata was changed
-            new_hash = hashlib.sha256(dumps(data.get("data")).encode("utf-8")).hexdigest()
+            new_hash = hashlib.sha256(dumps(md).encode("utf-8")).hexdigest()
 
             if new_hash != self._metadataHash:
                 self._metadataHash = new_hash
                 self._metadataLock.acquire(blocking=True)
-                self.parseMetaData(data.get("data"))
+                self.parseMetaData(md)
+                self._metadata = md
                 self._metadataLock.release()
 
             # reset fail count
@@ -137,6 +122,39 @@ class Heimdall():
                 print(errors.ERROR_ODIN_HEARTBEAT_REQUEST_RETRY)
                 self._heartBeatRequestRetryFailCount += 1
 
+    """
+        METADATA ---------------------------------------------------------
+    """
+
+    def parseMetaData(self, metadata):
+        topics = metadata["topics"]
+        # create topics
+        for t in topics:
+            t_ = topic.Topic(topicName=t, logPath=topics[t]["logPath"])
+            self._topics[t] = t_
+            # create partitions
+
+            # partitions in current broker
+            partitions = list(
+                filter(lambda p: int(p["heimdallId"]) == self._id, topics[t]["partitions"])
+            )
+            for part in partitions:
+                p = partition.Partition(
+                    partitionId=part["partitionId"],
+                    isReplica=part["isReplica"],
+                    logPath=part["logPath"]
+                )
+                self._topics[t].partitions.append(p)
+
+        for t in self._topics:
+            print(t)
+            for p in self._topics[t].partitions:
+                print(p)
+
+    """
+        PARTITIONING -----------------------------------------------------
+    """
+    
     def partitionFunction(self, message):
         if not message.get("key"):
             return -1
@@ -147,36 +165,54 @@ class Heimdall():
         else:
             return -1
 
-    def yeetToHeimdall(self, messages):
+    def yeetToHeimdall(self, topic, partitioned_messages):
         # if partition exists in current heimdall, 
         #   acquire lock for partition, write to partition
+        for pid in partitioned_messages:
+            part = list(filter(lambda p: int(p.partitionId) == int(pid), self._topics[topic].partitions))
+            if len(part) > 0:
+                selected_part:partition.Partition = part[0]
+                print("MESSAGE TO : ", selected_part, ";;; PID : ", pid, ";;; OFFSET : ", selected_part.offset)
+                selected_part.pushNewMessages(partitioned_messages[pid])
+                print("NEW OFFSET : ", selected_part.offset)
 
         # create a socket to send data to other brokers
-        pass
+        currentHeimdalls = [
+            self._metadata["heimdalls"][i] for i in self._metadata["heimdalls"]
+        ]
+        for h in currentHeimdalls:
+            # make socket for each and yeet it
+            socket = socket.socket()
 
     def partitionIncomingMessages(self, topic, messages):
+        # if topic doesnt exist, create topic | update metadata
+        if self._topics.get(topic) != None:
+            # TODO : send request to update
+            pass
+
+        # partition messages into respective partitions
         partitions_buffer = {}
         for m in messages:
             # get partition number for each message
             p = self.partitionFunction(message=m)
 
-            # handle partition error
+            # TODO : handle partition error
             if p == -1:
                 p = 0
             
-            if not partitions_buffer.get(p):
-                partitions_buffer[p] = []
+            if not partitions_buffer.get(p+1):
+                partitions_buffer[p+1] = []
             
             # add to partition buffer
-            partitions_buffer[p].append(m)
+            partitions_buffer[p+1].append(m)
 
         pprint(partitions_buffer)
         # # push partitions to respective heimdall
-        # for k in partitions_buffer.keys():
-        #     # find which heimdall the kth partition must go to
-        #     t = threading.Thread(self.yeetToHeimdall, (partitions_buffer[k],))
-        #     t.start()
+        self.yeetToHeimdall(topic, partitions_buffer)
     
+    """
+        SOCKET SERVER ----------------------------------------------------
+    """
 
     def decompressMessage(self, message, insist = True):
         try:
@@ -196,7 +232,7 @@ class Heimdall():
         except:
             raise RuntimeError("Could interpret unzipped contents")
         return message
-    
+
 
     def returnSocketHandler(self):
         heimdallSelf = self
@@ -265,5 +301,5 @@ class Heimdall():
         )
         self._threadedSocketServerThread.start()
 
-        timer = threading.Timer(interval=10.0, function=self.destroyServer, args=())
+        timer = threading.Timer(interval=30.0, function=self.destroyServer, args=())
         timer.start()

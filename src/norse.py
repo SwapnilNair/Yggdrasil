@@ -1,12 +1,13 @@
+import base64
 import json
 import socket
 import threading
-from uuid import uuid4
-from datetime import datetime
-import zlib
-import base64
-import requests
 import time
+import zlib
+from datetime import datetime
+from uuid import uuid4
+
+import requests
 
 
 class Norse():
@@ -22,7 +23,6 @@ class Norse():
         self._leaderHeimdall = None
         
     def sendMessage(self, topic):
-        
         self._socketStorage = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         try:
             self._socketStorage.connect((self._leaderHeimdall["heimdallIp"], self._leaderHeimdall["heimdallPort"]))
@@ -31,7 +31,7 @@ class Norse():
             print("data sent to Heimdall")
             self._socketStorage.close()
         except Exception as e:
-            print('Connection refused' + '' + e)
+            print('ERROR[NORSE]: {}'.format(str(e)))
             self.checkForLeaderHeimdall()
             self.sendMessage(topic)
             
@@ -60,7 +60,7 @@ class Norse():
 
 
     def checkForLeaderHeimdall(self):
-        URL = "https://localhost:5000/leader"
+        URL = "http://localhost:5000/leader"
         """
         {
             "leader": -1
@@ -73,16 +73,16 @@ class Norse():
             }
         }
         """
-        r = -1
-        while (r == -1):
-            print("waiting for odin...")
-            r = requests.get(url = URL).json()['leader']
+        leader = -1
+        while (leader == -1 or leader == "-1"):
+            print("MESSAGE[NORSE] : Requesting Odin for leader...")
+            r = requests.get(url = URL)
+            leader = r.json()['leader']
+            print(leader)
             time.sleep(2)
-        self._leaderHeimdall = json.loads(r)
 
-        
-
-        
-
-
- 
+        self._leaderHeimdall = {
+            "heimdallIp": leader["ip"],
+            "heimdallPort": int(leader["port"])
+        }
+        print(self._leaderHeimdall)
