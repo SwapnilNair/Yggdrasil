@@ -9,11 +9,11 @@ lock = threading.Lock()
 
 class Asgardian():
 
-    def __init__(self, ip, port, id):
-        self._producerID = uuid4()
+    def __init__(self, ip, port, id, flag):
         self._ip = ip
         self._port = port
         self._id = id
+        self._flag = flag
 
     def broadcastHandler(self, HOST, PORT, message):
         sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -51,7 +51,7 @@ class Asgardian():
 
  
     def wrapMessage(self, message):
-        return {"nodeType" : "asgardian", "ip" : self._ip, "port" : self._port, "nodeID" : str(self._id), 'message' : message}
+        return {"nodeType" : "asgardian", "ip" : self._ip, "port" : self._port, "nodeID" : str(self._id), "flag" : self._flag, "message" : message}
             
 
 

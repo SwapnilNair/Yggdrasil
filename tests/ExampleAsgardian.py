@@ -10,12 +10,17 @@ port = sys.argv[1]
 id = sys.argv[3]
 flag = False
 
+try:
+    flag = sys.argv[4]
+except:
+    print("Flag not mentioned")
+    
 
 consumer = asgardian.Asgardian(
     ip = ip,
     port=port,
-    id = id
-    #flag = flag
+    id = id,
+    flag = flag
 
 )
 
