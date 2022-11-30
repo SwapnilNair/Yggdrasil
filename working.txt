@@ -43,14 +43,12 @@ Producer
 Consumer 
 
 TODO : 
-    - Parse Meta data
-    - Create topic & partitions
+    - Parse Meta data [done]
+    - Create topic & partitions [done]
+    - Write partitions to resp brokers [HEIMDALL] [done]
+    - leader election [ODIN] [done]
     - Write messages to files which come from producer [HEIMDALL] [in prog]
-    - leader election [ODIN]
-    - Write partitions to resp brokers [HEIMDALL] [in prog]
-        - OFFSET !
     - sending messages to consumer [HEIMDALL]
-        - OFFSET !
     - updating metadata in zookeeper [HEIMDALL / ODIN]
 
 B1 B2 B3

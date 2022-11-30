@@ -1,5 +1,6 @@
 import json
 import threading
+from time import sleep
 
 
 class Partition():
@@ -16,6 +17,21 @@ class Partition():
         self.messages = []
         self.isReplica = isReplica
         self.getMessagesFromLogs()
+        self.logLock = threading.Lock()
+        self.flushToFile = threading.Thread(
+            target=self.flushMessagesToFile,
+        )
+
+    def flushMessagesToFile(self):
+        while True:
+            self.logLock.acquire(blocking=True)
+            print("MESSAGE[PARTITION] : Flushing messages to file...")
+            f = open(self.logPath, "w")
+            f.write(json.dumps(self.messages))
+            f.close()
+            self.logLock.release()
+            print("MESSAGE[PARTITION] : Flushed messages to file!")
+            sleep(5)
 
     def pushNewMessages(self, messages):
         self.messagesLock.acquire(blocking=True)
