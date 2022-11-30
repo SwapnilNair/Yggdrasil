@@ -8,7 +8,7 @@ import errors
 import messages
 import requests
 
-from . import topic
+#from . import topic
 
 
 class Heimdall():
@@ -16,7 +16,7 @@ class Heimdall():
     """
     def __init__(self, port, ip="localhost", ) -> None:
         # initialize stuff
-        self._id = uuid4()
+        self._id = 0
         self._ip = ip
         self._port = int(port)
         self._zookeeperIp = "localhost"
@@ -64,7 +64,7 @@ class Heimdall():
         """
         Serves client to send heartbeats to Zookeeper
         """
-        k = 5
+        k = 100
         for i in range(k):
             self.sendHeartBeat()
             sleep(2)
