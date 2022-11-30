@@ -141,6 +141,7 @@ class Odin():
         return json.dumps({"leader": self.metadata["heimdalls"][leaderInfo]})
 
     def leaderElection(self):
+        print("MESSAGE[ODIN] : Conducting leader election")
         self.isleaderElectionCurrentlyHappening = True
         # first heimdall found that is active
         for h,v in self.metadata["heimdalls"].items():
@@ -148,6 +149,7 @@ class Odin():
                 self.leader = int(h)
                 self.metadata["leader"] = h
                 self.isleaderElectionCurrentlyHappening = False
+                print("MESSAGE[ODIN] : New leader elected : {}".format(self.leader))
                 break
         else:
             print("ERROR[ODIN] : No Heimdalls active! Awaiting Heimdall connections!")

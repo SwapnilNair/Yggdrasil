@@ -32,7 +32,7 @@ class Norse():
         self._socketStorage = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         try:
             self._socketStorage.connect((self._leaderHeimdall["heimdallIp"], self._leaderHeimdall["heimdallPort"]))
-            dataString = json.dumps(self.wrapMessage({'topic': topic, 'payload': self._incomingMessages[topic]}))
+            dataString = json.dumps(self.wrapMessage({'topic': topic, 'messages': self._incomingMessages[topic]}))
             self._socketStorage.send(dataString.encode('utf-8'))
             print("data sent to Heimdall")
             self._socketStorage.close()
@@ -40,8 +40,6 @@ class Norse():
             print('ERROR[NORSE]: {}'.format(str(e)))
             self.checkForLeaderHeimdall()
             self.sendMessage(topic)
-            
-        
         
     def produceMessage(self, topic, message):
         '''

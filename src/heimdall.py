@@ -165,24 +165,42 @@ class Heimdall():
         else:
             return -1
 
-    def yeetToHeimdall(self, topic, partitioned_messages):
+    def wrapMessage(self, payload):
+        return {
+            "nodeType" : "heimdall", 
+            "ip" : self._ip, 
+            "port" : self._port,
+            "nodeID" : str(self._id),
+            "payload" : payload
+        }
+
+    def yeetToHeimdall(self, topic, partitioned_messages, broadcast=True):
         # if partition exists in current heimdall, 
         #   acquire lock for partition, write to partition
         for pid in partitioned_messages:
             part = list(filter(lambda p: int(p.partitionId) == int(pid), self._topics[topic].partitions))
             if len(part) > 0:
                 selected_part:partition.Partition = part[0]
-                print("MESSAGE TO : ", selected_part, ";;; PID : ", pid, ";;; OFFSET : ", selected_part.offset)
+                print("MESSAGE[HEIMDALL] : MESSAGE TO : ", selected_part, ";;; PID : ", pid, ";;; OFFSET : ", selected_part.offset)
                 selected_part.pushNewMessages(partitioned_messages[pid])
-                print("NEW OFFSET : ", selected_part.offset)
+                print("MESSAGE[HEIMDALL] : NEW OFFSET : ", selected_part.offset)
 
-        # create a socket to send data to other brokers
-        currentHeimdalls = [
-            self._metadata["heimdalls"][i] for i in self._metadata["heimdalls"]
-        ]
-        for h in currentHeimdalls:
-            # make socket for each and yeet it
-            socket = socket.socket()
+        if broadcast:
+            # create a socket to send data to other brokers
+            for h in self._metadata["heimdalls"]:
+                heim = self._metadata["heimdalls"][h]
+
+                # broadcast only to alive heimdalls
+                if (heim["ip"] == "" and heim["port"] == "") or (heim["ip"] == self._ip and heim["port"] == self._port) :
+                    continue
+                else:
+                    # make socket for each and yeet it
+                    sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+                    # print(heim["ip"], heim["port"])
+                    sock.connect((heim["ip"], int(heim["port"])))
+                    dataString = dumps(self.wrapMessage({'topic': topic, 'partitioned_messages': partitioned_messages}))
+                    sock.send(dataString.encode('utf-8'))
+                    sock.close()
 
     def partitionIncomingMessages(self, topic, messages):
         # if topic doesnt exist, create topic | update metadata
@@ -214,24 +232,24 @@ class Heimdall():
         SOCKET SERVER ----------------------------------------------------
     """
 
-    def decompressMessage(self, message, insist = True):
+    def decompressMessage(self, payload, insist = True):
         try:
-            assert(message['messages'])
+            assert(payload['messages'])
         except:
             if insist:
                 raise RuntimeError("JSON not in expected format")
             else:
-                return message
+                return payload
         try:
-            message['messages'] = zlib.decompress(base64.b64decode(message['messages']))
+            payload['messages'] = zlib.decompress(base64.b64decode(payload['messages']))
         except:
             raise RuntimeError("Could not decode contents")
         
         try:
-            message['messages'] = loads(message['messages'])
+            payload['messages'] = loads(payload['messages'])
         except:
             raise RuntimeError("Could interpret unzipped contents")
-        return message
+        return payload
 
 
     def returnSocketHandler(self):
@@ -252,16 +270,20 @@ class Heimdall():
                     # partition and yeet to respective heimdall
                     # print()
                     heimdallSelf.partitionIncomingMessages(
-                        data["message"]["topic"],
-                        heimdallSelf.decompressMessage(data["message"])["messages"]
+                        data["payload"]["topic"],
+                        heimdallSelf.decompressMessage(data["payload"])["messages"]
                     )
                     pass
                 elif nodeType == "heimdall":
                     # sync partitions
-                    pass
+                    payload = data["payload"]
+                    print(payload.keys())
+                    heimdallSelf.yeetToHeimdall(payload["topic"], payload["partitioned_messages"], False)
+
                 elif nodeType == "asgardian":
                     # requests messages
                     pass
+
                 else:
                     pass
 
