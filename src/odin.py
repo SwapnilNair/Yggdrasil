@@ -117,7 +117,7 @@ class Odin():
         Heimdall damaar handling 
     '''    
     def handleHeimdallDeath(self,x):
-        print("Broker " + str(x) + "died")
+        print("ERROR[ODIN] : Broker " + str(x) + " died")
         # update metadata
         self.resetHeimdall(x)
         self.leaderElection()
@@ -220,7 +220,7 @@ class Odin():
         except OSError as error:
             pass
 
-        print("MAKING TOPIC : {}".format(topic))
+        print("MESSAGE[ODIN] : MAKING TOPIC : {}".format(topic))
 
 
         # make topic and append

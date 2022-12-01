@@ -55,6 +55,7 @@ class Asgardian():
         while broadcastThreadHeimdall0.is_alive() or broadcastThreadHeimdall1.is_alive() or broadcastThreadHeimdall2.is_alive():
             time.sleep(1)
 
+        print("MESSAGE[ASGARDIAN] : Finished subscribing to topics...")
         self.request()
 
     # called to subscribe
@@ -71,7 +72,7 @@ class Asgardian():
             if not self._flag:
                 data = sock.recv(4096).decode('utf-8')
                 res = json.loads(data)
-                print("RESSSSSSSSSSSS >", res)
+                # print("RESSSSSSSSSSSS >", res)
                 self.updateOffsetTable(res['payload']['offset_table'])
             print("UPDATED : ", self.offset_table)
         except:
@@ -100,11 +101,11 @@ class Asgardian():
                 sock.sendall(dataString.encode('utf-8'))
                 
                 data = sock.recv(8192).decode('utf-8')
-                print(data)
+                # print(data)
                 res = json.loads(data)
 
                 self.updateOffsetTable(res['payload']["offset_table"])
-                print(res['payload']['messages'])
+                print("RECEIVED MESSAGE OF LEN : {} from PORT {}".format(len(res['payload']['messages']), PORT))
                 time.sleep(3)
             except Exception as err:
                 print(err)

@@ -236,9 +236,9 @@ class Heimdall():
             part = list(filter(lambda p: int(p.partitionId) == int(pid), self._topics[topic].partitions))
             if len(part) > 0:
                 selected_part:partition.Partition = part[0]
-                print("MESSAGE[HEIMDALL] : MESSAGE TO : ", selected_part, ";;; PID : ", pid, ";;; OFFSET : ", selected_part.offset)
+                # print("MESSAGE[HEIMDALL] : MESSAGE TO : ", selected_part, ";;; PID : ", pid, ";;; OFFSET : ", selected_part.offset)
                 selected_part.pushNewMessages(partitioned_messages[pid])
-                print("MESSAGE[HEIMDALL] : NEW OFFSET : ", selected_part.offset)
+                # print("MESSAGE[HEIMDALL] : NEW OFFSET : ", selected_part.offset)
 
         if broadcast:
             # create a socket to send data to other brokers
@@ -399,6 +399,7 @@ class Heimdall():
                                 consumer_offset_p = int(offset_table[t][str(p.partitionId)])
                                 partition_offset = int(p.offset)
 
+                                print("T : {} | P : {} | PART OFFSET : {} | CON OFFSET : {}".format(t, p.partitionId, partition_offset, consumer_offset_p))
                                 if (partition_offset > consumer_offset_p):
                                     offset_table[t][str(p.partitionId)] = partition_offset
                                     messages_buffer.extend(p.messages[consumer_offset_p:partition_offset])
@@ -446,5 +447,5 @@ class Heimdall():
         )
         self._threadedSocketServerThread.start()
 
-        timer = threading.Timer(interval=25.0, function=self.destroyServer, args=())
+        timer = threading.Timer(interval=1000.0, function=self.destroyServer, args=())
         timer.start()

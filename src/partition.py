@@ -18,27 +18,26 @@ class Partition():
         self.isReplica = isReplica
         self.getMessagesFromLogs()
         self.logLock = threading.Lock()
-        self.flushToFile = threading.Thread(
-            target=self.flushMessagesToFile,
-        )
-        self.flushToFile.start()
+        # self.flushToFile = threading.Thread(
+        #     target=self.flushMessagesToFile,
+        # )
+        # self.flushToFile.start()
 
     def flushMessagesToFile(self):
-        while True:
-            self.logLock.acquire(blocking=True)
-            print("MESSAGE[PARTITION] : Flushing messages to file...")
-            f = open(self.logPath, "w+")
-            f.write(json.dumps(self.messages))
-            f.close()
-            self.logLock.release()
-            print("MESSAGE[PARTITION] : Flushed messages to file!")
-            sleep(5)
+        self.logLock.acquire(blocking=True)
+        print("MESSAGE[PARTITION] : Flushing messages to file...")
+        f = open(self.logPath, "w+")
+        f.write(json.dumps(self.messages))
+        f.close()
+        self.logLock.release()
+        print("MESSAGE[PARTITION] : Flushed messages to file!")
 
     def pushNewMessages(self, messages):
         self.messagesLock.acquire(blocking=True)
         self.messages.extend(messages)
         self.offset = len(self.messages)
         self.messagesLock.release()
+        self.flushMessagesToFile()
 
     def getMessagesFromLogs(self):
         self.messagesLock.acquire(blocking=True)
