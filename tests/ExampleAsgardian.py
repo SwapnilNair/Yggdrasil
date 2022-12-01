@@ -5,8 +5,8 @@ sys.path.append(os.getcwd()+"/src")
 
 import asgardian
 
-ip = sys.argv[2]
 port = sys.argv[1]
+ip = sys.argv[2]
 id = sys.argv[3]
 flag = False
 

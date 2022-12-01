@@ -1,6 +1,7 @@
 import _thread
 import json
 import logging
+import os
 import threading as th
 
 from flask import Flask, request
@@ -19,6 +20,8 @@ from flask import Flask, request
         return self.response
 '''
 
+BASE_LOG_PATH = "C:/logs/"
+
 class Odin():
     '''
         Class variables
@@ -29,12 +32,13 @@ class Odin():
     healthapi = None
     metadata = ""
     leader = 0
-    metafile = open('./data/metadata.json','r')
+    
 
     def __init__(self,name):
         self.heimdallId = 0
         self.heimdallIdLock = th.Lock()
 
+        self.metafile = './data/metadata.json'
 
         self.healthThreadNo = None
         self.healthapi = Flask(name)
@@ -55,7 +59,18 @@ class Odin():
         self.b1_timer = None
         self.b2_timer = None
         self.b3_timer = None
-        self.metadata = json.load(self.metafile)
+
+
+        with open(self.metafile, 'r') as f:
+            self.metadata = json.load(f)
+        print(self.metadata)
+
+        # reset
+        for i in self.metadata["heimdalls"]:
+            self.metadata["heimdalls"][i] = {
+                "ip": "",
+                "port": ""
+            }
 
         # TODO : cleanup | rebalance partitions!!
 
@@ -85,9 +100,9 @@ class Odin():
             pass
 
 
- '''
-    Endpoints
- '''           
+    '''
+        Endpoints
+    '''           
 
     '''
         Reset Heimdall when it goes damaar
@@ -184,11 +199,52 @@ class Odin():
             else:
                 print("ERROR[ODIN] : No Heimdalls active! Awaiting Heimdall connections!")
                 self.isleaderElectionCurrentlyHappening = True
+    
     '''
     Update metadata every cycle
     '''
-    def updateMetadata(self,newMetadata):
+
+    def updateMetadata(self):
+        # newMetadata = request.json["metadata"]
+        # self.metadata = newMetadata
+        # print("WRITING NEW META DATA TO FILE")
+        # with open(self.metafile, "w") as f:
+        #     f.write(json.dumps(newMetadata))
+
         self.metadataLock.acquire(blocking=True)
-        self.metadata = newMetadata;
+        topic = request.json["topic"]
+        path = BASE_LOG_PATH+topic
+
+        try:
+            os.mkdir(path)
+        except OSError as error:
+            pass
+
+        print("MAKING TOPIC : {}".format(topic))
+
+
+        # make topic and append
+        newTopicMetaData = {
+            "name": topic,
+            "logPath": path,
+            "partitions": []
+        }
+
+        for i in range(0, 3):
+            newTopicMetaData["partitions"].append(
+                {
+                    "partitionId": str(i+1),
+                    "heimdallId": str(i+1),
+                    "isReplica": False,
+                    "logPath": f"{BASE_LOG_PATH}{topic}/partition_{i+1}.json",
+                    "offset": 0
+                }
+            )
+
+        self.metadata["topics"][topic] = newTopicMetaData
+
+        print(self.metadata)
+
         self.metadataLock.release()
+
         return '1'

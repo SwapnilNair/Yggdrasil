@@ -22,4 +22,4 @@ with open('./data/dataset.json', "r") as jsonfile:
     data = json.loads(jsonfile.read())
     #print(len(data))
     for message in data:
-        producer.produceMessage(message=message, topic="topic1")
+        producer.produceMessage(message=message, topic="Orders")

@@ -1,5 +1,6 @@
 import base64
 import hashlib
+import os
 import socket
 import threading
 import zlib
@@ -30,8 +31,11 @@ class Heimdall():
         self._zookeeperPort = 5000
         self._healthEndPoint = "health"
         self._topics = {}
-        self._producers = []
-        self._consumers = []
+        # self._producers = []
+        self._consumers = {}
+
+        # save consumer to topic map
+        # save topic to consumer map
 
         self._heartBeatRequestRetryFailCount = 0
 
@@ -73,7 +77,7 @@ class Heimdall():
         """
         Serves client to send heartbeats to Zookeeper
         """
-        k = 15
+        k = 20
         for i in range(k):
             self.sendHeartBeat()
             sleep(1)
@@ -125,6 +129,57 @@ class Heimdall():
     """
         METADATA ---------------------------------------------------------
     """
+
+    def createTopic(self, topicName):
+        # path = BASE_LOG_PATH+topicName
+        # # create a folder for topic
+        # try:
+        #     os.mkdir(path)
+        # except OSError as error:
+        #     print(error)
+
+        # newTopicMetaData = {
+        #     "name": topicName,
+        #     "logPath": path,
+        #     "partitions": []
+        # }
+
+        # for i in range(0, 3):
+        #     newTopicMetaData["partitions"].append(
+        #         {
+        #             "partitionId": str(i+1),
+        #             "heimdallId": str(i+1),
+        #             "isReplica": False,
+        #             "logPath": f"{BASE_LOG_PATH}{topicName}/partition_{i+1}.json",
+        #             "offset": 0
+        #         }
+        #     )
+        
+        # # print(self._metadata)
+        # print("MESSAGE[HEIMDALL] : ADDING {}".format(topicName))
+        # # update local copy of metadata
+        # self._metadata["topics"][topicName] = newTopicMetaData
+        # print(self._metadata)
+
+        # self._metadataHash = hashlib.sha256(dumps(self._metadata).encode('utf-8')).hexdigest()
+
+        # new_t = topic.Topic(
+        #     topicName=topic,
+        #     logPath=path
+        # )
+
+        # self._topics[topicName] = new_t
+
+        # make a request to update metadata
+        
+        r = requests.post(
+            url=f'http://{self._zookeeperIp}:{self._zookeeperPort}/updateMetadata',
+            json={
+                "topic": topicName
+            }
+        )
+        
+
 
     def parseMetaData(self, metadata):
         topics = metadata["topics"]
@@ -205,8 +260,7 @@ class Heimdall():
     def partitionIncomingMessages(self, topic, messages):
         # if topic doesnt exist, create topic | update metadata
         if self._topics.get(topic) != None:
-            # TODO : send request to update
-            pass
+            self.createTopic(topic)
 
         # partition messages into respective partitions
         partitions_buffer = {}
@@ -224,7 +278,7 @@ class Heimdall():
             # add to partition buffer
             partitions_buffer[p+1].append(m)
 
-        pprint(partitions_buffer)
+        # pprint(partitions_buffer)
         # # push partitions to respective heimdall
         self.yeetToHeimdall(topic, partitions_buffer)
     
@@ -259,7 +313,7 @@ class Heimdall():
             Handler for the socket server
             """
             def handle(self):
-                data = loads(str(self.request.recv(4096), 'utf-8'))
+                data = loads(str(self.request.recv(8192), 'utf-8'))
                 print(messages.MSG_DATA_RECEIVED.format(len(data),self.client_address))
 
                 nodeType = data["nodeType"]
@@ -273,23 +327,92 @@ class Heimdall():
                         data["payload"]["topic"],
                         heimdallSelf.decompressMessage(data["payload"])["messages"]
                     )
-                    pass
                 elif nodeType == "heimdall":
                     # sync partitions
                     payload = data["payload"]
-                    print(payload.keys())
+                    # print(payload.keys())
                     heimdallSelf.yeetToHeimdall(payload["topic"], payload["partitioned_messages"], False)
 
                 elif nodeType == "asgardian":
+                    # print(data)
+                    # print()
                     # requests messages
-                    pass
+                    payload = data["payload"]
+                    # print(payload)
+                    # print(type(payload))
+                    ip = data["ip"]
+                    port = data["port"]
+                    flag = data.get("flag")
+                    offset_table = payload.get("offset_table")
+                    topics = payload.get("topics")
+                    query = payload.get("query")
+
+                    if topics != None:
+                        # subscribe asgardian to topics
+                        key = f"{ip}:{port}"
+                        if heimdallSelf._consumers.get(key) == None:
+                            heimdallSelf._consumers[key] = []
+                        heimdallSelf._consumers[key].extend(topics)
+
+                        offset_table_updates = {}
+                        # send current 
+                        if flag == False:
+                            # topics : list of strings of topics
+                            for t in topics:
+                                if t not in heimdallSelf._topics:
+                                    heimdallSelf.createTopic(t)
+
+                                # wait
+                                while t not in heimdallSelf._topics:
+                                    sleep(1)
+
+                                offset_table_updates[t] = {}
+
+                                for p in heimdallSelf._topics[t].partitions:
+                                    offset_table_updates[t][p.partitionId] = p.offset
+
+                        print(offset_table_updates)
+
+                        self.request.sendall(
+                            dumps(
+                                heimdallSelf.wrapMessage({"offset_table":  offset_table_updates})
+                            ).encode('utf-8')
+                        )
+
+
+
+                    elif query != None:
+                        # consumer_identifier = f"{ip}:{port}"
+                        # consumer = heimdallSelf._consumers[consumer_identifier]
+
+                        messages_buffer = []
+                        # get the new messages
+
+                        # {
+                        #     "topic": {"0": 0, "1": 0, "2": 0}
+                        # }
+
+                        for t in offset_table:
+                            topic_class = heimdallSelf._topics[t]
+
+                            for p in topic_class.partitions:
+                                consumer_offset_p = int(offset_table[t][str(p.partitionId)])
+                                partition_offset = int(p.offset)
+
+                                if (partition_offset > consumer_offset_p):
+                                    offset_table[t][str(p.partitionId)] = partition_offset
+                                    messages_buffer.extend(p.messages[consumer_offset_p:partition_offset])
+
+                        self.request.sendall(
+                            dumps(
+                                heimdallSelf.wrapMessage({"messages":  messages_buffer, "offset_table": offset_table})
+                            ).encode('utf-8')
+                        )
+                        
 
                 else:
                     pass
-
-                cur_thread = threading.current_thread()
-                response = bytes("{}: {}".format(cur_thread.name, data), 'utf-8')
-                self.request.sendall(response)
+                
         return socketRequestHandler
 
     def createProducerSocketServer(self):
@@ -323,5 +446,5 @@ class Heimdall():
         )
         self._threadedSocketServerThread.start()
 
-        timer = threading.Timer(interval=30.0, function=self.destroyServer, args=())
+        timer = threading.Timer(interval=25.0, function=self.destroyServer, args=())
         timer.start()

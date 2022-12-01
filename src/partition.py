@@ -21,12 +21,13 @@ class Partition():
         self.flushToFile = threading.Thread(
             target=self.flushMessagesToFile,
         )
+        self.flushToFile.start()
 
     def flushMessagesToFile(self):
         while True:
             self.logLock.acquire(blocking=True)
             print("MESSAGE[PARTITION] : Flushing messages to file...")
-            f = open(self.logPath, "w")
+            f = open(self.logPath, "w+")
             f.write(json.dumps(self.messages))
             f.close()
             self.logLock.release()
@@ -41,10 +42,14 @@ class Partition():
 
     def getMessagesFromLogs(self):
         self.messagesLock.acquire(blocking=True)
-        with open(self.logPath, "r") as f:
-            d = json.load(f)
-            self.messages.extend(d)
-        self.offset = len(self.messages)
+        try:
+            with open(self.logPath, "r") as f:
+                d = json.load(f)
+                self.messages.extend(d)
+            self.offset = len(self.messages)
+        except FileNotFoundError as e:
+            self.offset = 0
+            
         self.messagesLock.release()
 
     def __str__(self):

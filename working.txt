@@ -42,11 +42,12 @@ Producer
 
 Consumer 
 
+- Parse Meta data [done]
+- Create topic & partitions [done]
+- Write partitions to resp brokers [HEIMDALL] [done]
+- leader election [ODIN] [done]
+
 TODO : 
-    - Parse Meta data [done]
-    - Create topic & partitions [done]
-    - Write partitions to resp brokers [HEIMDALL] [done]
-    - leader election [ODIN] [done]
     - Write messages to files which come from producer [HEIMDALL] [in prog]
     - sending messages to consumer [HEIMDALL]
     - updating metadata in zookeeper [HEIMDALL / ODIN]
@@ -55,3 +56,29 @@ B1 B2 B3
 P1 P2 P3
 P2 P3 P1
 P3 P1 P2
+
+self._topics = {
+    "orders": [0,0,0],
+    "users": [0,0,0]
+}
+
+consumer 
+    => sub to topics 
+        => consumer.subscribe method is called,
+            => create offset table for each topic
+                => set to -1 if --from-beginning is NOT GIVEN
+                => set to 0 if --from-beginning is GIVEN
+            => send offset table to broker
+        => broker saves which topics consumer wants
+            => sends offset values for topics that consumer wants if --from-beginning is NOT GIVEN
+
+    => request for message
+        => send current offset table
+        => broker checks offset_table - current_partition_offset
+            => sends new messages
+            => sends updated offset
+
+
+consumer 
+    => create topic 
+    => 
