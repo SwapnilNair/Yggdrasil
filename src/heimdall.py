@@ -77,10 +77,9 @@ class Heimdall():
         """
         Serves client to send heartbeats to Zookeeper
         """
-        k = 20
-        for i in range(k):
+        while True:
             self.sendHeartBeat()
-            sleep(1)
+            sleep(1.5)
 
     def sendHeartBeat(self):
         """
